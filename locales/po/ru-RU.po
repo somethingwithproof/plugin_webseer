@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2023-10-14 20:07+0000\nLast-Translator: Vladyslav V. Prodan <akapulko@gmail.com>\nLanguage-Team: Russian <http://translate.cacti.net/projects/cacti/webseer/ru/>\nLanguage: ru-RU\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\nX-Generator: Weblate 4.8.1\n"
+msgstr "Project-Id-Version: \nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2024-12-06 19:24+0000\nLast-Translator: Anton Zhuravlev <baka109g@gmail.com>\nLanguage-Team: Russian <http://translate.cacti.net/projects/cacti/webseer/ru/>\nLanguage: ru-RU\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\nX-Generator: Weblate 4.8.1\n"
 
 #: includes/arrays.php:78 includes/arrays.php:324 includes/arrays.php:419
 #: webseer.php:400
@@ -230,14 +230,12 @@ msgid "Requires Authentication"
 msgstr "Требуется аутентификация"
 
 #: includes/arrays.php:343
-#, fuzzy
 msgid "Check this box if the site will normally return a 401 Error as it requires a username and password."
 msgstr "Установите этот флажок, если сайт обычно возвращает ошибку 401, так как для этого требуется имя пользователя и пароль."
 
 #: includes/arrays.php:349
-#, fuzzy
 msgid "Check Certificate"
-msgstr "Проверьте сертификат"
+msgstr "Проверить сертификат"
 
 #: includes/arrays.php:350
 #, fuzzy
@@ -245,7 +243,6 @@ msgid "If using SSL, check this box if you want to validate the certificate. Def
 msgstr "Если вы используете SSL, отметьте этот флажок, если хотите проверить сертификат. По умолчанию включено, отключено, если вы используете самоподписной сертификат."
 
 #: includes/arrays.php:356
-#, fuzzy
 msgid "Notification Timing"
 msgstr "Время уведомления"
 
@@ -259,7 +256,6 @@ msgid "How many minutes the URL must be down before it will send an alert.  Afte
 msgstr "Сколько минут URL-адрес должен быть опущен, прежде чем будет отправлено предупреждение.  После отправки уведомления для отправки сообщения по электронной почте \"Восстановление сайта\" необходимо также увеличить это количество минут."
 
 #: includes/arrays.php:367
-#, fuzzy
 msgid "Time Out"
 msgstr "Тайм-аут"
 
@@ -308,9 +304,8 @@ msgid "Notification Settings"
 msgstr "Настройки уведомлений"
 
 #: includes/arrays.php:407
-#, fuzzy
 msgid "Notify Format"
-msgstr "Уведомить счета"
+msgstr "Формат оповещений"
 
 #: includes/arrays.php:409
 #, fuzzy
@@ -523,27 +518,23 @@ msgid "The Service Check history was purged for %s"
 msgstr "История проверки услуг была очищена для %s"
 
 #: webseer.php:350 webseer_servers.php:670
-#, fuzzy, php-format
+#, php-format
 msgid "Query [edit: %s]"
 msgstr "Запрос [Редактировать: %s]"
 
 #: webseer.php:352 webseer_servers.php:672
-#, fuzzy
 msgid "Query [new]"
 msgstr "Запрос [новый]"
 
 #: webseer.php:388
-#, fuzzy
 msgid "No Users Selected"
-msgstr "Нет пользователей Выбранные пользователи"
+msgstr "Пользователь не выбран"
 
 #: webseer.php:390
-#, fuzzy
 msgid "Users Selected"
-msgstr "Пользователи Выбранные"
+msgstr "Выбранные пользователи"
 
 #: webseer.php:393
-#, fuzzy
 msgid "All Users Selected"
 msgstr "Все выбранные пользователи"
 
@@ -664,9 +655,8 @@ msgid "Disabled"
 msgstr "Выключен"
 
 #: webseer.php:900 webseer_proxies.php:315 webseer_servers.php:570
-#, fuzzy
 msgid "No Servers Found"
-msgstr "Серверы не найдены"
+msgstr "Сервера не найдены"
 
 #: webseer.php:986
 #, fuzzy
@@ -746,9 +736,8 @@ msgid "Proxy [new]"
 msgstr "Запрос [новый]"
 
 #: webseer_proxies.php:281
-#, fuzzy
 msgid "Ports (http/https)"
-msgstr "Порты (http / https)"
+msgstr "Порты (http/https)"
 
 #: webseer_proxies.php:285
 msgid "Username"
