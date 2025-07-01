@@ -4,17 +4,17 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: Automatically generated\nLanguage-Team: none\nLanguage: ka\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-01 10:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: includes/arrays.php:78 includes/arrays.php:324 includes/arrays.php:419
 #: webseer.php:400
 msgid "None"
-msgstr ""
+msgstr "არცერთი"
 
 #: includes/arrays.php:93 webseer_servers.php:753
 #, php-format
 msgid "%d Minute"
-msgstr ""
+msgstr "%d წუთი"
 
 #: includes/arrays.php:94 includes/arrays.php:95 includes/arrays.php:96
 #: includes/arrays.php:97 includes/arrays.php:98 includes/arrays.php:99
@@ -22,35 +22,35 @@ msgstr ""
 #: webseer_servers.php:753
 #, php-format
 msgid "%d Minutes"
-msgstr ""
+msgstr "%d წუთი"
 
 #: includes/arrays.php:106 includes/arrays.php:107 includes/arrays.php:108
 #: includes/arrays.php:109 includes/arrays.php:110 includes/arrays.php:111
 #: includes/arrays.php:112 includes/arrays.php:113 webseer_servers.php:753
 #, php-format
 msgid "%d Seconds"
-msgstr ""
+msgstr "%d წამი"
 
 #: includes/arrays.php:141 includes/arrays.php:145 includes/arrays.php:152
 msgid "Delete"
-msgstr ""
+msgstr "წაშლა"
 
 #: includes/arrays.php:146 includes/arrays.php:153
 msgid "Disable"
-msgstr ""
+msgstr "გათიშვა"
 
 #: includes/arrays.php:147 includes/arrays.php:154
 msgid "Enable"
-msgstr ""
+msgstr "ჩართვა"
 
 #: includes/arrays.php:148
 msgid "Duplicate"
-msgstr ""
+msgstr "დუბლირება"
 
 #: includes/arrays.php:162 includes/arrays.php:231 webseer.php:761
 #: webseer_proxies.php:273 webseer_servers.php:517
 msgid "Name"
-msgstr ""
+msgstr "სახელი"
 
 #: includes/arrays.php:163
 msgid "A Useful Name for this Proxy."
@@ -62,7 +62,7 @@ msgstr ""
 
 #: includes/arrays.php:171 webseer_proxies.php:277
 msgid "Hostname"
-msgstr ""
+msgstr "ჰოსტის სახელი"
 
 #: includes/arrays.php:172
 msgid "The Proxy Hostname."
@@ -78,7 +78,7 @@ msgstr ""
 
 #: includes/arrays.php:189
 msgid "HTTPS Port"
-msgstr ""
+msgstr "HTTPS პორტი"
 
 #: includes/arrays.php:190
 msgid "The HTTPS Proxy Port."
@@ -86,7 +86,7 @@ msgstr ""
 
 #: includes/arrays.php:198
 msgid "User Name"
-msgstr ""
+msgstr "მომხმარებლის სახელი"
 
 #: includes/arrays.php:199
 msgid "The user to use to authenticate with the Proxy if any."
@@ -94,7 +94,7 @@ msgstr ""
 
 #: includes/arrays.php:207
 msgid "Password"
-msgstr ""
+msgstr "პაროლი"
 
 #: includes/arrays.php:208
 msgid "The user password to use to authenticate with the Proxy if any."
@@ -136,7 +136,7 @@ msgstr ""
 
 #: includes/arrays.php:259 includes/arrays.php:313 webseer_servers.php:518
 msgid "IP Address"
-msgstr ""
+msgstr "IP მისამართი"
 
 #: includes/arrays.php:260
 msgid "IP Address to connect to this server"
@@ -145,7 +145,7 @@ msgstr ""
 #: includes/arrays.php:266 includes/arrays.php:305 webseer.php:588
 #: webseer_servers.php:390
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: includes/arrays.php:267
 msgid "This is the URL to connect to remote.php on this server."
@@ -153,7 +153,7 @@ msgstr ""
 
 #: includes/arrays.php:273 webseer_servers.php:520
 msgid "Location"
-msgstr ""
+msgstr "მდებარეობა"
 
 #: includes/arrays.php:274
 msgid "Location of this server"
@@ -185,7 +185,7 @@ msgstr ""
 
 #: includes/arrays.php:321
 msgid "Proxy Server"
-msgstr ""
+msgstr "პროქსი სერვერი"
 
 #: includes/arrays.php:322
 msgid "If this connection text requires a proxy, select it here.  Otherwise choose 'None'."
@@ -193,7 +193,7 @@ msgstr ""
 
 #: includes/arrays.php:329 webseer.php:776
 msgid "Compression"
-msgstr ""
+msgstr "შეკუმშვა"
 
 #: includes/arrays.php:333
 msgid "What compression does the server require?  Most servers should not need this, but some will not redirect properly without it."
@@ -225,7 +225,7 @@ msgstr ""
 
 #: includes/arrays.php:359
 msgid "Trigger"
-msgstr ""
+msgstr "ტრიგერი"
 
 #: includes/arrays.php:363
 msgid "How many minutes the URL must be down before it will send an alert.  After an alert is sent, in order for a 'Site Recovering' Email to be send, it must also be up this number of minutes."
@@ -233,7 +233,7 @@ msgstr ""
 
 #: includes/arrays.php:367
 msgid "Time Out"
-msgstr ""
+msgstr "მოლოდინის ვადა"
 
 #: includes/arrays.php:371
 msgid "How many seconds to allow the page to timeout before reporting it as down."
@@ -269,7 +269,7 @@ msgstr ""
 
 #: includes/arrays.php:404
 msgid "Notification Settings"
-msgstr ""
+msgstr "გაფრთხილებების მორგება"
 
 #: includes/arrays.php:407
 msgid "Notify Format"
@@ -281,7 +281,7 @@ msgstr ""
 
 #: includes/arrays.php:414
 msgid "Notification List"
-msgstr ""
+msgstr "გაფრთხილებების სია"
 
 #: includes/arrays.php:416
 msgid "Use this Notification List for those to be notified when this website goes down."
@@ -289,7 +289,7 @@ msgstr ""
 
 #: includes/arrays.php:422
 msgid "Notify Accounts"
-msgstr ""
+msgstr "გაფრთხილება ანგარიშებისთვის"
 
 #: includes/arrays.php:424
 msgid "This is a listing of accounts that will be notified when this website goes down."
@@ -305,16 +305,16 @@ msgstr ""
 
 #: includes/functions.php:34 webseer.php:824 webseer.php:1030
 msgid "Checks"
-msgstr ""
+msgstr "შემოწმებები"
 
 #: includes/functions.php:35 webseer_servers.php:375 webseer_servers.php:507
 #: webseer_servers.php:760
 msgid "Servers"
-msgstr ""
+msgstr "სერვერები"
 
 #: includes/functions.php:36 webseer_proxies.php:292 webseer_proxies.php:349
 msgid "Proxies"
-msgstr ""
+msgstr "პროქსიები"
 
 #: includes/functions.php:42 includes/functions.php:45
 msgid "Log History"
@@ -334,7 +334,7 @@ msgstr ""
 
 #: setup.php:309
 msgid "Management"
-msgstr ""
+msgstr "მართვა"
 
 #: setup.php:309
 msgid "Web Service Checks"
@@ -358,7 +358,7 @@ msgstr ""
 
 #: setup.php:347
 msgid "Server Edit"
-msgstr ""
+msgstr "სერვერის ჩასწორება"
 
 #: setup.php:354
 msgid "Save Server"
@@ -386,13 +386,13 @@ msgstr[1] ""
 #: webseer_proxies.php:108 webseer_servers.php:157 webseer_servers.php:166
 #: webseer_servers.php:175
 msgid "Cancel"
-msgstr ""
+msgstr "გაუქმება"
 
 #: webseer.php:198 webseer.php:207 webseer.php:216 webseer.php:225
 #: webseer_proxies.php:108 webseer_servers.php:157 webseer_servers.php:166
 #: webseer_servers.php:175
 msgid "Continue"
-msgstr ""
+msgstr "გაგრძელება"
 
 #: webseer.php:198
 msgid "Delete URL"
@@ -464,19 +464,19 @@ msgstr ""
 
 #: webseer.php:399
 msgid "All"
-msgstr ""
+msgstr "ყველა"
 
 #: webseer.php:433 webseer.php:995 webseer_proxies.php:343
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
 #: webseer.php:585 webseer_servers.php:387
 msgid "Date"
-msgstr ""
+msgstr "თარიღი"
 
 #: webseer.php:591 webseer.php:885 webseer_servers.php:393
 msgid "Error"
-msgstr ""
+msgstr "შეცდომა"
 
 #: webseer.php:594 webseer.php:781 webseer_servers.php:396
 msgid "HTTP Code"
@@ -484,27 +484,27 @@ msgstr ""
 
 #: webseer.php:599 webseer.php:791 webseer_servers.php:401
 msgid "DNS"
-msgstr ""
+msgstr "DNS"
 
 #: webseer.php:604 webseer.php:796 webseer_servers.php:406
 msgid "Connect"
-msgstr ""
+msgstr "დაკავშირება"
 
 #: webseer.php:609 webseer.php:801 webseer_servers.php:411
 msgid "Redirect"
-msgstr ""
+msgstr "გადამისამართება"
 
 #: webseer.php:614 webseer.php:806 webseer_servers.php:416
 msgid "Total"
-msgstr ""
+msgstr "სულ"
 
 #: webseer.php:620
 msgid "Urls"
-msgstr ""
+msgstr "URL-ები"
 
 #: webseer.php:644
 msgid "Service Down"
-msgstr ""
+msgstr "სერვისი გამორთულია"
 
 #: webseer.php:644
 msgid "Service Restored"
@@ -516,28 +516,28 @@ msgstr ""
 
 #: webseer.php:756 webseer_servers.php:516
 msgid "Actions"
-msgstr ""
+msgstr "ქმედებები"
 
 #: webseer.php:766
 msgid "Status"
-msgstr ""
+msgstr "სტატუსი"
 
 #: webseer.php:771 webseer.php:883 webseer.php:886 webseer_servers.php:519
 #: webseer_servers.php:741
 msgid "Enabled"
-msgstr ""
+msgstr "ჩართულია"
 
 #: webseer.php:786
 msgid "Auth"
-msgstr ""
+msgstr "ავტ"
 
 #: webseer.php:811
 msgid "Timeout"
-msgstr ""
+msgstr "მოლოდინის ვადა"
 
 #: webseer.php:816 webseer_servers.php:521
 msgid "Last Check"
-msgstr ""
+msgstr "ბოლო შემოწმება"
 
 #: webseer.php:845
 msgid "Edit Service Check"
@@ -558,19 +558,19 @@ msgstr ""
 
 #: webseer.php:878
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: webseer.php:880 webseer_servers.php:436
 msgid "Down"
-msgstr ""
+msgstr "გამორთ"
 
 #: webseer.php:880 webseer_servers.php:436
 msgid "Up"
-msgstr ""
+msgstr "ჩართ"
 
 #: webseer.php:883 webseer.php:886 webseer_servers.php:741
 msgid "Disabled"
-msgstr ""
+msgstr "გათიშულია"
 
 #: webseer.php:900 webseer_proxies.php:315 webseer_servers.php:570
 msgid "No Servers Found"
@@ -582,30 +582,30 @@ msgstr ""
 
 #: webseer.php:1001 webseer_servers.php:735
 msgid "State"
-msgstr ""
+msgstr "შტატი"
 
 #: webseer.php:1005 webseer_servers.php:739
 msgid "Any"
-msgstr ""
+msgstr "ნებისმიერი"
 
 #: webseer.php:1014 webseer_servers.php:748
 msgid "Refresh"
-msgstr ""
+msgstr "განახლება"
 
 #: webseer.php:1035 webseer.php:1127 webseer_proxies.php:354
 #: webseer_servers.php:765 webseer_servers.php:847
 msgid "Default"
-msgstr ""
+msgstr "ნაგულისხმევი"
 
 #: webseer.php:1046 webseer.php:1138 webseer_proxies.php:365
 #: webseer_servers.php:858
 msgid "Go"
-msgstr ""
+msgstr "მიდი"
 
 #: webseer.php:1047 webseer.php:1139 webseer_proxies.php:366
 #: webseer_servers.php:776 webseer_servers.php:859
 msgid "Clear"
-msgstr ""
+msgstr "გასუფთავება"
 
 #: webseer.php:1108
 msgid "Webseer Service Check History"
@@ -613,15 +613,15 @@ msgstr ""
 
 #: webseer.php:1116 webseer_servers.php:836
 msgid "Date Search"
-msgstr ""
+msgstr "მონაცემების ძებნა"
 
 #: webseer.php:1122 webseer_servers.php:842
 msgid "Entries"
-msgstr ""
+msgstr "ჩანაწერები"
 
 #: webseer.php:1140
 msgid "Purge Events"
-msgstr ""
+msgstr "მოვლენების გასუფთავება"
 
 #: webseer_proxies.php:103
 msgid "Click 'Continue' to delete the following Proxy."
@@ -646,15 +646,15 @@ msgstr ""
 
 #: webseer_proxies.php:281
 msgid "Ports (http/https)"
-msgstr ""
+msgstr "პორტები (http/https)"
 
 #: webseer_proxies.php:285
 msgid "Username"
-msgstr ""
+msgstr "მომხმარებლის სახელი"
 
 #: webseer_proxies.php:309
 msgid "Not Set"
-msgstr ""
+msgstr "დაყენებული არაა"
 
 #: webseer_proxies.php:334
 msgid "Webseer Proxy Management"
@@ -696,15 +696,15 @@ msgstr ""
 
 #: webseer_servers.php:522
 msgid "Master"
-msgstr ""
+msgstr "ძირითადი"
 
 #: webseer_servers.php:523
 msgid "This Host"
-msgstr ""
+msgstr "ეს ჰოსტი"
 
 #: webseer_servers.php:539
 msgid "Edit Server"
-msgstr ""
+msgstr "სერვერის ჩასწორება"
 
 #: webseer_servers.php:553
 msgid "View Server History"
@@ -712,11 +712,11 @@ msgstr ""
 
 #: webseer_servers.php:560 webseer_servers.php:563 webseer_servers.php:564
 msgid "No"
-msgstr ""
+msgstr "არა"
 
 #: webseer_servers.php:560 webseer_servers.php:563 webseer_servers.php:564
 msgid "Yes"
-msgstr ""
+msgstr "კი"
 
 #: webseer_servers.php:727
 msgid "Webseer Servers"
@@ -724,7 +724,7 @@ msgstr ""
 
 #: webseer_servers.php:741
 msgid "Triggered"
-msgstr ""
+msgstr "დატრიგერებულია"
 
 #: webseer_servers.php:828
 msgid "Webseer Server History"
