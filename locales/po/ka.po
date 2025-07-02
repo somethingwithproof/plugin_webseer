@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-01 10:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-02 19:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: includes/arrays.php:78 includes/arrays.php:324 includes/arrays.php:419
 #: webseer.php:400
@@ -102,7 +102,7 @@ msgstr ""
 
 #: includes/arrays.php:227 includes/arrays.php:287
 msgid "General Settings"
-msgstr ""
+msgstr "ზოგადი პარამეტრები"
 
 #: includes/arrays.php:232
 msgid "Display Name of this server"
@@ -128,7 +128,7 @@ msgstr ""
 
 #: includes/arrays.php:252
 msgid "Master Server"
-msgstr ""
+msgstr "მთავარი სერვერი"
 
 #: includes/arrays.php:253
 msgid "Sets this server to the Master server.  The Master server handles all Email operations"
@@ -205,7 +205,7 @@ msgstr ""
 
 #: includes/arrays.php:342
 msgid "Requires Authentication"
-msgstr ""
+msgstr "ითხოვს ავთენტიკაციას"
 
 #: includes/arrays.php:343
 msgid "Check this box if the site will normally return a 401 Error as it requires a username and password."
@@ -213,7 +213,7 @@ msgstr ""
 
 #: includes/arrays.php:349
 msgid "Check Certificate"
-msgstr ""
+msgstr "სერტიფიკატის შემოწმება"
 
 #: includes/arrays.php:350
 msgid "If using SSL, check this box if you want to validate the certificate. Default on, turn off if you the site uses a self-signed certificate."
@@ -273,7 +273,7 @@ msgstr "გაფრთხილებების მორგება"
 
 #: includes/arrays.php:407
 msgid "Notify Format"
-msgstr ""
+msgstr "გაფრთხილების ფორმატი"
 
 #: includes/arrays.php:409
 msgid "This is the format to use when sending the notification email"
@@ -318,11 +318,11 @@ msgstr "პროქსიები"
 
 #: includes/functions.php:42 includes/functions.php:45
 msgid "Log History"
-msgstr ""
+msgstr "ჟურნალის ისტორია"
 
 #: poller_webseer.php:186
 msgid "Cacti Master"
-msgstr ""
+msgstr "Cacti - ძირითადი"
 
 #: poller_webseer.php:189
 msgid "Cacti Remote Server"
@@ -354,7 +354,7 @@ msgstr ""
 
 #: setup.php:340
 msgid "WebSeer Servers"
-msgstr ""
+msgstr "Webseer-ის სერვერები"
 
 #: setup.php:347
 msgid "Server Edit"
@@ -362,7 +362,7 @@ msgstr "სერვერის ჩასწორება"
 
 #: setup.php:354
 msgid "Save Server"
-msgstr ""
+msgstr "სერვერის შენახვა"
 
 #: setup.php:361
 msgid "WebSeer Proxies"
@@ -448,7 +448,7 @@ msgstr ""
 
 #: webseer.php:352 webseer_servers.php:672
 msgid "Query [new]"
-msgstr ""
+msgstr "მოთხოვნა [ახალი]"
 
 #: webseer.php:388
 msgid "No Users Selected"
@@ -456,7 +456,7 @@ msgstr ""
 
 #: webseer.php:390
 msgid "Users Selected"
-msgstr ""
+msgstr "მონიშნული მომხმარებლები"
 
 #: webseer.php:393
 msgid "All Users Selected"
@@ -480,7 +480,7 @@ msgstr "შეცდომა"
 
 #: webseer.php:594 webseer.php:781 webseer_servers.php:396
 msgid "HTTP Code"
-msgstr ""
+msgstr "HTTP კოდი"
 
 #: webseer.php:599 webseer.php:791 webseer_servers.php:401
 msgid "DNS"
@@ -642,7 +642,7 @@ msgstr ""
 
 #: webseer_proxies.php:171
 msgid "Proxy [new]"
-msgstr ""
+msgstr "პროქსი [ახალი]"
 
 #: webseer_proxies.php:281
 msgid "Ports (http/https)"
@@ -720,7 +720,7 @@ msgstr "კი"
 
 #: webseer_servers.php:727
 msgid "Webseer Servers"
-msgstr ""
+msgstr "Webseer-ის სერვერები"
 
 #: webseer_servers.php:741
 msgid "Triggered"
