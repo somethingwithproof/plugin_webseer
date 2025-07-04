@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-02 19:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-04 04:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: includes/arrays.php:78 includes/arrays.php:324 includes/arrays.php:419
 #: webseer.php:400
@@ -58,7 +58,7 @@ msgstr ""
 
 #: includes/arrays.php:167
 msgid "New Proxy"
-msgstr ""
+msgstr "ახალი პროქსი"
 
 #: includes/arrays.php:171 webseer_proxies.php:277
 msgid "Hostname"
@@ -70,7 +70,7 @@ msgstr ""
 
 #: includes/arrays.php:180
 msgid "HTTP Port"
-msgstr ""
+msgstr "HTTP პორტი"
 
 #: includes/arrays.php:181
 msgid "The HTTP Proxy Port."
@@ -221,7 +221,7 @@ msgstr ""
 
 #: includes/arrays.php:356
 msgid "Notification Timing"
-msgstr ""
+msgstr "გაფრთხილების დრო"
 
 #: includes/arrays.php:359
 msgid "Trigger"
@@ -241,7 +241,7 @@ msgstr ""
 
 #: includes/arrays.php:376
 msgid "Verification Strings"
-msgstr ""
+msgstr "გადამოწმების სტრიქონები"
 
 #: includes/arrays.php:380
 msgid "Response Search String"
@@ -370,7 +370,7 @@ msgstr ""
 
 #: setup.php:368
 msgid "Proxie Edit"
-msgstr ""
+msgstr "პროქსის ჩასწორება"
 
 #: setup.php:375
 msgid "Save Proxy"
