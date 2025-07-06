@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-04 04:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-06 03:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: includes/arrays.php:78 includes/arrays.php:324 includes/arrays.php:419
 #: webseer.php:400
@@ -66,7 +66,7 @@ msgstr "ჰოსტის სახელი"
 
 #: includes/arrays.php:172
 msgid "The Proxy Hostname."
-msgstr ""
+msgstr "პროქსის ჰოსტის სახელი."
 
 #: includes/arrays.php:180
 msgid "HTTP Port"
@@ -161,7 +161,7 @@ msgstr ""
 
 #: includes/arrays.php:291
 msgid "Service Check Name"
-msgstr ""
+msgstr "სერვისის შემოწმების სახელი"
 
 #: includes/arrays.php:292
 msgid "The name that is displayed for this Service Check, and is included in any Alert notifications."
@@ -201,7 +201,7 @@ msgstr ""
 
 #: includes/arrays.php:338
 msgid "Available Checks"
-msgstr ""
+msgstr "ხელმისაწვდომი შემოწმებები"
 
 #: includes/arrays.php:342
 msgid "Requires Authentication"
@@ -245,7 +245,7 @@ msgstr "გადამოწმების სტრიქონები"
 
 #: includes/arrays.php:380
 msgid "Response Search String"
-msgstr ""
+msgstr "პასუხის ძებნის სტრიქონი"
 
 #: includes/arrays.php:381
 msgid "This is the string to search for in the URL response for a live and working Web Service."
@@ -297,7 +297,7 @@ msgstr ""
 
 #: includes/arrays.php:429
 msgid "Extra Alert Emails"
-msgstr ""
+msgstr "დამატებითი განგაშის ელფოსტები"
 
 #: includes/arrays.php:433
 msgid "You may specify here extra Emails to receive alerts for this URL (comma separated)"
@@ -346,11 +346,11 @@ msgstr ""
 
 #: setup.php:326
 msgid "Service Check Edit"
-msgstr ""
+msgstr "სერვისის შემოწმების ჩასწორება"
 
 #: setup.php:333
 msgid "Service Check Save"
-msgstr ""
+msgstr "სერვისის შემოწმების შენახვა"
 
 #: setup.php:340
 msgid "WebSeer Servers"
@@ -366,7 +366,7 @@ msgstr "სერვერის შენახვა"
 
 #: setup.php:361
 msgid "WebSeer Proxies"
-msgstr ""
+msgstr "WebSeer-ის პროქსიები"
 
 #: setup.php:368
 msgid "Proxie Edit"
@@ -374,7 +374,7 @@ msgstr "პროქსის ჩასწორება"
 
 #: setup.php:375
 msgid "Save Proxy"
-msgstr ""
+msgstr "პროქსის შენახვა"
 
 #: webseer.php:193
 msgid "Click 'Continue' to Delete the following URL."
@@ -444,7 +444,7 @@ msgstr ""
 #: webseer.php:350 webseer_servers.php:670
 #, php-format
 msgid "Query [edit: %s]"
-msgstr ""
+msgstr "მოთხოვნა [ჩასწორება: %s]"
 
 #: webseer.php:352 webseer_servers.php:672
 msgid "Query [new]"
@@ -460,7 +460,7 @@ msgstr "მონიშნული მომხმარებლები"
 
 #: webseer.php:393
 msgid "All Users Selected"
-msgstr ""
+msgstr "ყველა მონიშნული მომხმარებელი"
 
 #: webseer.php:399
 msgid "All"
@@ -508,7 +508,7 @@ msgstr "სერვისი გამორთულია"
 
 #: webseer.php:644
 msgid "Service Restored"
-msgstr ""
+msgstr "სერვისი აღდგენილია"
 
 #: webseer.php:655
 msgid "No Service Check Events in History"
@@ -541,7 +541,7 @@ msgstr "ბოლო შემოწმება"
 
 #: webseer.php:845
 msgid "Edit Service Check"
-msgstr ""
+msgstr "სერვისის შემოწმების ჩასწორება"
 
 #: webseer.php:854
 msgid "Disable Service Check"
