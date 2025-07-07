@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-06 03:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-07 04:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: includes/arrays.php:78 includes/arrays.php:324 includes/arrays.php:419
 #: webseer.php:400
@@ -169,7 +169,7 @@ msgstr ""
 
 #: includes/arrays.php:298 webseer.php:850
 msgid "Enable Service Check"
-msgstr ""
+msgstr "სერვისის შემოწმებების ჩართვა"
 
 #: includes/arrays.php:299
 msgid "Uncheck this box to disabled this url from being checked."
@@ -545,7 +545,7 @@ msgstr "სერვისის შემოწმების ჩასწო�
 
 #: webseer.php:854
 msgid "Disable Service Check"
-msgstr ""
+msgstr "სერვისის შემოწმების გამორთვა"
 
 #: webseer.php:859
 msgid "View Service Check History"
@@ -574,7 +574,7 @@ msgstr "გათიშულია"
 
 #: webseer.php:900 webseer_proxies.php:315 webseer_servers.php:570
 msgid "No Servers Found"
-msgstr ""
+msgstr "სერვერები აღმოჩენილი არაა"
 
 #: webseer.php:986
 msgid "Webseer Service Checks"
@@ -658,7 +658,7 @@ msgstr "დაყენებული არაა"
 
 #: webseer_proxies.php:334
 msgid "Webseer Proxy Management"
-msgstr ""
+msgstr "WebSeer-ის პროქსის მართვა"
 
 #: webseer_servers.php:152
 msgid "Click 'Continue' to Delete the following Server."
@@ -728,4 +728,4 @@ msgstr "დატრიგერებულია"
 
 #: webseer_servers.php:828
 msgid "Webseer Server History"
-msgstr ""
+msgstr "WebSeer სერვერის ისტორია"
