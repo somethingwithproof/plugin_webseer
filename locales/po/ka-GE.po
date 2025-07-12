@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-07 04:26+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
+msgstr "Project-Id-Version: Cacti\nReport-Msgid-Bugs-To: developers@cacti.net\nPOT-Creation-Date: 2023-02-05 13:24-0500\nPO-Revision-Date: 2025-07-12 22:39+0000\nLast-Translator: Ekaterine papava <papava.e@gtu.ge>\nLanguage-Team: Georgian <https://translate.cacti.net/projects/cacti/webseer/ka/>\nLanguage: ka-GE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.11.4\n"
 
 #: includes/arrays.php:78 includes/arrays.php:324 includes/arrays.php:419
 #: webseer.php:400
@@ -74,7 +74,7 @@ msgstr "HTTP პორტი"
 
 #: includes/arrays.php:181
 msgid "The HTTP Proxy Port."
-msgstr ""
+msgstr "HTTP პროქსის პორტი."
 
 #: includes/arrays.php:189
 msgid "HTTPS Port"
@@ -82,7 +82,7 @@ msgstr "HTTPS პორტი"
 
 #: includes/arrays.php:190
 msgid "The HTTPS Proxy Port."
-msgstr ""
+msgstr "HTTPS პროქსის პორტი."
 
 #: includes/arrays.php:198
 msgid "User Name"
@@ -452,7 +452,7 @@ msgstr "მოთხოვნა [ახალი]"
 
 #: webseer.php:388
 msgid "No Users Selected"
-msgstr ""
+msgstr "მომხმარებლები არჩეული არაა"
 
 #: webseer.php:390
 msgid "Users Selected"
@@ -549,7 +549,7 @@ msgstr "სერვისის შემოწმების გამორ�
 
 #: webseer.php:859
 msgid "View Service Check History"
-msgstr ""
+msgstr "სერვისის შემოწმების ისტორიის ნახვა"
 
 #: webseer.php:868
 #, php-format
@@ -632,13 +632,13 @@ msgstr[1] ""
 #: webseer_proxies.php:108
 msgid "Delete Proxy"
 msgid_plural "Delete Proxies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "პროქსის წაშლა"
+msgstr[1] "პროქსიების წაშლა"
 
 #: webseer_proxies.php:169
 #, php-format
 msgid "Proxy [edit: %s]"
-msgstr ""
+msgstr "პროქსი [ჩასწორება: %s]"
 
 #: webseer_proxies.php:171
 msgid "Proxy [new]"
