@@ -114,7 +114,7 @@ if (function_exists('plugin_maint_check_webseer_url')) {
 }
 
 $url['debug_type'] = 'Url';
-register_startup($url_id);
+register_startup($url_id, $url['poller_id']);
 
 if ($url['url'] != '') {
 	/* attempt to get results 3 times before exiting */
@@ -301,7 +301,7 @@ if ($url['url'] != '') {
 }
 
 /* register process end */
-register_shutdown($url_id);
+register_shutdown($url_id, $url['poller_id']);
 
 /* purge old entries from the log */
 
@@ -311,18 +311,19 @@ db_execute_prepared('DELETE FROM plugin_webseer_servers_log
 
 /* exit */
 
-function register_startup($url_id) {
+function register_startup($url_id, $poller_id) {
 	db_execute_prepared('INSERT INTO plugin_webseer_processes
-		(url_id, pid, time)
-		VALUES(?, ?, NOW())',
-		array($url_id, getmypid()));
+		(url_id, poller_id, pid, time)
+		VALUES(?, ?, ?, NOW())',
+		array($url_id, $poller_id, getmypid()));
 }
 
-function register_shutdown($url_id) {
+function register_shutdown($url_id, $poller_id) {
 	db_execute_prepared('DELETE FROM plugin_webseer_processes
 		WHERE url_id = ?
+		AND poller_id = ?
 		AND pid = ?',
-		array($url_id, getmypid()), false);
+		array($url_id, $poller_id, getmypid()), false);
 }
 
 function plugin_webseer_get_users($results, $url, $type) {
