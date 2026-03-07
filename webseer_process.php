@@ -200,7 +200,7 @@ if ($url['url'] != '') {
 		$sendemail = false;
 
 		if ($results['result'] == 0) {
-			$url['failures'] += $url['failures'];
+			$url['failures']++;
 
 			if ($url['failures'] >= ($url['downtrigger'] * 60)/$poller_interval && $url['triggered'] == 0) {
 				$sendemail = true;
@@ -320,7 +320,7 @@ function register_startup($url_id) {
 
 function register_shutdown($url_id) {
 	db_execute_prepared('DELETE FROM plugin_webseer_processes
-		WHERE url = ?
+		WHERE url_id = ?
 		AND pid = ?',
 		array($url_id, getmypid()), false);
 }
