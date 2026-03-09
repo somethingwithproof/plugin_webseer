@@ -47,7 +47,8 @@ $poller_interval = read_config_option('poller_interval');
 
 if (cacti_sizeof($parms)) {
 	foreach($parms as $parameter) {
-		if (str_contains($parameter, '=')) {
+		if (str_contains($parameter, '=') && $parameter[0] !== '=') {
+			// Limit 2 preserves '=' in values (e.g. --key=val=ue)
 			[$arg, $value] = explode('=', $parameter, 2);
 		} else {
 			$arg = $parameter;

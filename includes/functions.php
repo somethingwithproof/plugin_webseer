@@ -67,6 +67,10 @@ function plugin_webseer_refresh_servers() {
 	$data['action']  = 'GETSERVERS';
 	$results         = $cc->post($server['url'], $data);
 
+	if ($results === '' || $results === false) {
+		return;
+	}
+
 	$results         = explode("\n", $results);
 
 	foreach ($results as $r) {
@@ -78,18 +82,29 @@ function plugin_webseer_refresh_servers() {
 			}
 			$servers = json_decode($decoded, true);
 			if ($servers === null) {
+				// Deprecated: unserialize fallback will be removed in a future release. Migrate export data to JSON format.
+				cacti_log('WARNING: JSON decode failed for server data, attempting legacy unserialize fallback (deprecated)', false, 'WEBSEER');
 				$servers = unserialize($decoded, array('allowed_classes' => false));
 			}
-			if (isset($servers[0]['id'])) {
-				db_execute('TRUNCATE TABLE plugin_webseer_servers');
-				foreach ($servers as $save) {
-					db_execute_prepared('REPLACE INTO plugin_webseer_servers (id, enabled, master, name, url, ip, location)
-						VALUES (?,?,?,?,?,?,?)',
-						array(
-							$save['id'], $save['enabled'], $save['master'], $save['name'], $save['url'], $save['ip'] , $save['location']
-						)
-					);
+			if (!is_array($servers) || !isset($servers[0]['id'])) {
+				cacti_log('WARNING: Server import data has unexpected structure, skipping import', false, 'WEBSEER');
+				break;
+			}
+
+			$expected_keys = array('id', 'enabled', 'master', 'name', 'url', 'ip', 'location');
+
+			db_execute('TRUNCATE TABLE plugin_webseer_servers');
+			foreach ($servers as $save) {
+				if (!is_array($save) || array_diff($expected_keys, array_keys($save))) {
+					cacti_log('WARNING: Skipping malformed server entry during import', false, 'WEBSEER');
+					continue;
 				}
+				db_execute_prepared('REPLACE INTO plugin_webseer_servers (id, enabled, master, name, url, ip, location)
+					VALUES (?,?,?,?,?,?,?)',
+					array(
+						$save['id'], $save['enabled'], $save['master'], $save['name'], $save['url'], $save['ip'] , $save['location']
+					)
+				);
 			}
 
 			break;
@@ -106,6 +121,11 @@ function plugin_webseer_refresh_urls () {
 	$data           = array();
 	$data['action'] = 'GETURLS';
 	$results        = $cc->post($server['url'], $data);
+
+	if ($results === '' || $results === false) {
+		return;
+	}
+
 	$results        = explode("\n", $results);
 
 	foreach ($results as $r) {
@@ -117,24 +137,35 @@ function plugin_webseer_refresh_urls () {
 			}
 			$urls = json_decode($decoded, true);
 			if ($urls === null) {
+				// Deprecated: unserialize fallback will be removed in a future release. Migrate export data to JSON format.
+				cacti_log('WARNING: JSON decode failed for URL data, attempting legacy unserialize fallback (deprecated)', false, 'WEBSEER');
 				$urls = unserialize($decoded, array('allowed_classes' => false));
 			}
 
-			if (isset($urls[0]['id'])) {
-				db_execute('TRUNCATE TABLE plugin_webseer_urls');
+			if (!is_array($urls) || !isset($urls[0]['id'])) {
+				cacti_log('WARNING: URL import data has unexpected structure, skipping import', false, 'WEBSEER');
+				break;
+			}
 
-				foreach ($urls as $save) {
-					db_execute_prepared('REPLACE INTO plugin_webseer_urls
-						(id, enabled, requiresauth, checkcert, ip, display_name, notify_list, notify_accounts, url, search, search_maint, search_failed, notify_extra, downtrigger)
-						VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-						array(
-							$save['id'], $save['enabled'], $save['requiresauth'], $save['checkcert'],
-							$save['ip'], $save['display_name'], $save['notify_list'], $save['notify_accounts'],
-							$save['url'], $save['search'], $save['search_maint'],
-							$save['search_failed'], $save['notify_extra'], $save['downtrigger']
-						)
-					);
+			$expected_keys = array('id', 'enabled', 'requiresauth', 'checkcert', 'ip', 'display_name', 'notify_list', 'notify_accounts', 'url', 'search', 'search_maint', 'search_failed', 'notify_extra', 'downtrigger');
+
+			db_execute('TRUNCATE TABLE plugin_webseer_urls');
+
+			foreach ($urls as $save) {
+				if (!is_array($save) || array_diff($expected_keys, array_keys($save))) {
+					cacti_log('WARNING: Skipping malformed URL entry during import', false, 'WEBSEER');
+					continue;
 				}
+				db_execute_prepared('REPLACE INTO plugin_webseer_urls
+					(id, enabled, requiresauth, checkcert, ip, display_name, notify_list, notify_accounts, url, search, search_maint, search_failed, notify_extra, downtrigger)
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+					array(
+						$save['id'], $save['enabled'], $save['requiresauth'], $save['checkcert'],
+						$save['ip'], $save['display_name'], $save['notify_list'], $save['notify_accounts'],
+						$save['url'], $save['search'], $save['search_maint'],
+						$save['search_failed'], $save['notify_extra'], $save['downtrigger']
+					)
+				);
 			}
 
 			break;

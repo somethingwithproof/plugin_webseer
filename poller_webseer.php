@@ -48,7 +48,8 @@ $poller_id = $config['poller_id'];
 
 if (cacti_sizeof($parms)) {
 	foreach($parms as $parameter) {
-		if (str_contains($parameter, '=')) {
+		if (str_contains($parameter, '=') && $parameter[0] !== '=') {
+			// Limit 2 preserves '=' in values (e.g. --key=val=ue)
 			[$arg, $value] = explode('=', $parameter, 2);
 		} else {
 			$arg = $parameter;
