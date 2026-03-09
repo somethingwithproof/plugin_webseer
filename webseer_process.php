@@ -26,7 +26,7 @@
 $dir = dirname(__FILE__);
 chdir($dir);
 
-if (strpos($dir, 'plugins') !== false) {
+if (str_contains($dir, 'plugins')) {
 	chdir('../../');
 }
 
@@ -48,7 +48,7 @@ $poller_interval = read_config_option('poller_interval');
 if (cacti_sizeof($parms)) {
 	foreach($parms as $parameter) {
 		if (strpos($parameter, '=')) {
-			list($arg, $value) = explode('=', $parameter);
+			[$arg, $value] = explode('=', $parameter);
 		} else {
 			$arg = $parameter;
 			$value = '';

@@ -28,7 +28,7 @@ ini_set('max_execution_time', '55');
 $dir = dirname(__FILE__);
 chdir($dir);
 
-if (strpos($dir, 'plugins') !== false) {
+if (str_contains($dir, 'plugins')) {
 	chdir('../../');
 }
 
@@ -49,7 +49,7 @@ $poller_id = $config['poller_id'];
 if (cacti_sizeof($parms)) {
 	foreach($parms as $parameter) {
 		if (strpos($parameter, '=')) {
-			list($arg, $value) = explode('=', $parameter);
+			[$arg, $value] = explode('=', $parameter);
 		} else {
 			$arg = $parameter;
 			$value = '';

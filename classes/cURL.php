@@ -173,7 +173,7 @@ class cURL {
 				$this->proxy_https_port = $port_http;
 			}
 
-			$is_https = (substr(strtolower($url), 0, 5) == 'https');
+			$is_https = str_starts_with(strtolower($url), 'https');
 
 			$proxy_opts = array(
 				CURLOPT_UNRESTRICTED_AUTH => true,
@@ -233,7 +233,7 @@ class cURL {
 		if ($this->host['search_failed'] != '' && $errnum > 0) {
 			$this->debug('Processing search_failed');
 
-			if (strpos($data, $this->host['search_failed']) !== false) {
+			if (str_contains($data, $this->host['search_failed'])) {
 				$this->results['error'] = 'Failure Search string found!';
 			} else {
 				$this->results['error'] = '';
@@ -243,14 +243,14 @@ class cURL {
 			$this->debug('Processing search');
 
 			if ($this->host['search'] != '') {
-				$found = (strpos($data, $this->host['search']) !== false);
+				$found = str_contains($data, $this->host['search']);
 			} else {
 				$found = false;
 			}
 
 			if (!$found && $this->host['search_maint'] != '') {
 				$this->debug('Processing search maint');
-				$found = (strpos($data, $this->host['search_maint']) !== false);
+				$found = str_contains($data, $this->host['search_maint']);
 			}
 
 			if (!$found) {

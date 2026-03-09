@@ -70,7 +70,7 @@ function plugin_webseer_refresh_servers() {
 	$results         = explode("\n", $results);
 
 	foreach ($results as $r) {
-		if (substr($r, 0, 8) == 'SERVERS=') {
+		if (str_starts_with($r, 'SERVERS=')) {
 			$servers = substr($r, 8);
 			$servers = unserialize(base64_decode($servers));
 			if (isset($servers[0]['id'])) {
@@ -102,7 +102,7 @@ function plugin_webseer_refresh_urls () {
 	$results        = explode("\n", $results);
 
 	foreach ($results as $r) {
-		if (substr($r, 0, 5) == 'URLS=') {
+		if (str_starts_with($r, 'URLS=')) {
 			$urls = substr($r, 5);
 			$urls = unserialize(base64_decode($urls));
 
