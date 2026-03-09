@@ -72,7 +72,14 @@ function plugin_webseer_refresh_servers() {
 	foreach ($results as $r) {
 		if (str_starts_with($r, 'SERVERS=')) {
 			$servers = substr($r, 8);
-			$servers = unserialize(base64_decode($servers));
+			$decoded = base64_decode($servers, true);
+			if ($decoded === false) {
+				break;
+			}
+			$servers = json_decode($decoded, true);
+			if ($servers === null) {
+				$servers = unserialize($decoded, array('allowed_classes' => false));
+			}
 			if (isset($servers[0]['id'])) {
 				db_execute('TRUNCATE TABLE plugin_webseer_servers');
 				foreach ($servers as $save) {
@@ -104,7 +111,14 @@ function plugin_webseer_refresh_urls () {
 	foreach ($results as $r) {
 		if (str_starts_with($r, 'URLS=')) {
 			$urls = substr($r, 5);
-			$urls = unserialize(base64_decode($urls));
+			$decoded = base64_decode($urls, true);
+			if ($decoded === false) {
+				break;
+			}
+			$urls = json_decode($decoded, true);
+			if ($urls === null) {
+				$urls = unserialize($decoded, array('allowed_classes' => false));
+			}
 
 			if (isset($urls[0]['id'])) {
 				db_execute('TRUNCATE TABLE plugin_webseer_urls');

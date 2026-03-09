@@ -47,8 +47,8 @@ $poller_interval = read_config_option('poller_interval');
 
 if (cacti_sizeof($parms)) {
 	foreach($parms as $parameter) {
-		if (strpos($parameter, '=')) {
-			[$arg, $value] = explode('=', $parameter);
+		if (str_contains($parameter, '=')) {
+			[$arg, $value] = explode('=', $parameter, 2);
 		} else {
 			$arg = $parameter;
 			$value = '';
@@ -56,7 +56,7 @@ if (cacti_sizeof($parms)) {
 
 		switch ($arg) {
 		case '--id':
-			$url_id = $value;
+			$url_id = (int) $value;
 			break;
 		case '-d':
 		case '--debug':
@@ -323,7 +323,7 @@ function register_shutdown($url_id, $poller_id) {
 		WHERE url_id = ?
 		AND poller_id = ?
 		AND pid = ?',
-		array($url_id, $poller_id, getmypid()), false);
+		array($url_id, $poller_id, getmypid()));
 }
 
 function plugin_webseer_get_users($results, $url, $type) {
