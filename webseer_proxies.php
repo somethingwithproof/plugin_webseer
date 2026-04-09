@@ -180,7 +180,7 @@ function proxy_edit() {
 	draw_edit_form(
 		array(
 			'config' => array('no_form_tag' => true),
-			'fields' => inject_form_variables($webseer_proxy_fields, (isset($proxy) ? $proxy : array()))
+			'fields' => inject_form_variables($webseer_proxy_fields, ($proxy ?? array()))
 		)
 	);
 
