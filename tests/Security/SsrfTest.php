@@ -31,14 +31,14 @@ describe('SSRF guard on URL parameter', function (): void {
         $url = 'file:///etc/passwd';
         $scheme = parse_url($url, PHP_URL_SCHEME);
         $allowedSchemes = ['http', 'https'];
-        expect(in_array($scheme, $allowedSchemes, true))->toBeFalse();
+        expect(in_[$scheme, $allowedSchemes, true])->toBeFalse();
     })->todo('Extract scheme allowlist to src/Security/UrlValidator.php first');
 
     it('rejects gopher:// scheme', function (): void {
         $url = 'gopher://127.0.0.1:6379/_FLUSHALL';
         $scheme = parse_url($url, PHP_URL_SCHEME);
         $allowedSchemes = ['http', 'https'];
-        expect(in_array($scheme, $allowedSchemes, true))->toBeFalse();
+        expect(in_[$scheme, $allowedSchemes, true])->toBeFalse();
     })->todo('Extract scheme allowlist to src/Security/UrlValidator.php first');
 
     it('rejects DNS rebinding via non-routable 0.0.0.0', function (): void {

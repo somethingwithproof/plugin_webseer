@@ -85,7 +85,7 @@ class cURL {
 		}
 	}
 
-	function post($url, $data = array()) {
+	function post($url, $data = []) {
 		global $httpcompressions;
 
 		$this->debug('Executing Post Request');
@@ -93,14 +93,14 @@ class cURL {
 		$process = curl_init($url);
 		$this->headers[] = 'Content-type: application/x-www-form-urlencoded;charset=UTF-8';
 
-		$d = array();
+		$d = [];
 		foreach ($data as $i => $j) {
 			$d[] = "$i=$j";
 		}
 
 		$data = implode('&', $d);
 
-		$options = array(
+		$options = [
 			CURLOPT_HTTPHEADER => $this->headers,
 			CURLOPT_HEADER => true,
 			CURLOPT_USERAGENT => $this->user_agent,
@@ -109,14 +109,14 @@ class cURL {
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_POST => true,
-		);
+		];
 
 		if (!empty($this->compression)) {
 			$options[CURLOPT_ENCODING] = $httpcompressions[$this->compression];
 		}
 
 		$this->debug('cURL options: ' . clean_up_lines(var_export($options, true)));
-		curl_setopt_array($process, $options);
+		curl_setopt_[$process, $options];
 
 		$return = curl_exec($process);
 		curl_close($process);
@@ -177,38 +177,38 @@ class cURL {
 
 			$is_https = (substr(strtolower($url), 0, 5) == 'https');
 
-			$proxy_opts = array(
+			$proxy_opts = [
 				CURLOPT_UNRESTRICTED_AUTH => true,
 				CURLOPT_PROXY             => $this->proxy_hostname,
 				CURLOPT_PROXYPORT         => $is_https ? $port_https : $port_http,
-			);
+			];
 
 			if ($this->proxy_username != '') {
 				$proxy_opts[CURLOPT_PROXYUSERPWD] = $this->proxy_username . ':' . $this->proxy_password;
 			}
 		} else {
-			$proxy_opts = array();
+			$proxy_opts = [];
 		}
 
 		// Disable Cert checking for now
 		if ($this->host['checkcert'] == '') {
-			$cert_opts = array(
+			$cert_opts = [
 				CURLOPT_SSL_VERIFYPEER => FALSE,
 				CURLOPT_SSL_VERIFYHOST => FALSE,
-			);
+			];
 		} else {
-			$cert_opts = array();
+			$cert_opts = [];
 		}
 
 		$options += $proxy_opts;
 		$options += $cert_opts;
 
 		$this->debug('cURL options: ' . clean_up_lines(var_export($options, true)));
-		curl_setopt_array($process,$options);
+		curl_setopt_[$process,$options];
 
 		$data = curl_exec($process);
 
-		$this->data = str_replace(array("'", "\\"), array(''), $data);
+		$this->data = str_replace(["'", "\\"], [''], $data);
 
 		$this->results['options'] = curl_getinfo($process);
 		$this->results['options']['compression'] = $this->compression;
@@ -224,7 +224,7 @@ class cURL {
 			case 0:
 				break;
 			default:
-				$this->results['error'] = 'HTTP ERROR: ' . str_replace(array('"', "'"), '', (curl_error($process)));
+				$this->results['error'] = 'HTTP ERROR: ' . str_replace(['"', "'"], '', (curl_error($process)));
 
 				break;
 		}

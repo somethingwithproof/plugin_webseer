@@ -43,7 +43,7 @@ case 'enable':
 	$id = get_request_var('id');
 
 	if ($id > 0) {
-		db_execute_prepared('UPDATE plugin_webseer_servers SET enabled = "on" WHERE id = ?', array($id));
+		db_execute_prepared('UPDATE plugin_webseer_servers SET enabled = "on" WHERE id = ?', [$id]);
 		plugin_webseer_enable_remote_hosts($id, true);
 	}
 
@@ -55,7 +55,7 @@ case 'disable':
 	$id = get_request_var('id');
 
 	if ($id > 0) {
-		db_execute_prepared('UPDATE plugin_webseer_servers SET enabled = "" WHERE id = ?', array($id));
+		db_execute_prepared('UPDATE plugin_webseer_servers SET enabled = "" WHERE id = ?', [$id]);
 		plugin_webseer_enable_remote_hosts($id, false);
 	}
 
@@ -100,18 +100,18 @@ function form_actions() {
 
 				if ($action == WEBSEER_ACTION_SERVER_DELETE) { // delete
 					foreach ($hosts as $host) {
-						db_execute_prepared('DELETE FROM plugin_webseer_servers WHERE id = ?', array($host));
-						db_execute_prepared('DELETE FROM plugin_webseer_servers_log WHERE server= ?', array($host));
+						db_execute_prepared('DELETE FROM plugin_webseer_servers WHERE id = ?', [$host]);
+						db_execute_prepared('DELETE FROM plugin_webseer_servers_log WHERE server= ?', [$host]);
 						plugin_webseer_delete_remote_server($host);
 					}
 				} elseif ($action == WEBSEER_ACTION_SERVER_DISABLE) { // disable
 					foreach ($hosts as $host) {
-						db_execute_prepared('UPDATE plugin_webseer_servers SET enabled = "" WHERE id = ?', array($host));
+						db_execute_prepared('UPDATE plugin_webseer_servers SET enabled = "" WHERE id = ?', [$host]);
 						plugin_webseer_enable_remote_hosts($host, false);
 					}
 				} elseif ($action == WEBSEER_ACTION_SERVER_ENABLE) { // enable
 					foreach ($hosts as $host) {
-						db_execute_prepared('UPDATE plugin_webseer_servers SET enabled = "on" WHERE id = ?', array($host));
+						db_execute_prepared('UPDATE plugin_webseer_servers SET enabled = "on" WHERE id = ?', [$host]);
 						plugin_webseer_enable_remote_hosts($host, true);
 					}
 				}
@@ -124,7 +124,7 @@ function form_actions() {
 
 	/* setup some variables */
 	$server_list  = '';
-	$server_array = array();
+	$server_array = [];
 
 	/* loop through each of the graphs selected on the previous page and get more info about them */
 	foreach ($_POST as $var => $val) {
@@ -133,7 +133,7 @@ function form_actions() {
 			input_validate_input_number($matches[1]);
 			/* ==================================================== */
 
-			$server_list .= '<li>' . db_fetch_cell_prepared('SELECT name FROM plugin_webseer_servers WHERE id = ?', array($matches[1])) . '</li>';
+			$server_list .= '<li>' . db_fetch_cell_prepared('SELECT name FROM plugin_webseer_servers WHERE id = ?', [$matches[1]]) . '</li>';
 			$server_array[] = $matches[1];
 		}
 	}
@@ -198,7 +198,7 @@ function form_actions() {
 }
 
 function do_webseer() {
-	$hosts = array();
+	$hosts = [];
 	foreach ($_REQUEST as $var => $val) {
 		if (preg_match('/^chk_(.*)$/', $var, $matches)) {
 			$host = $matches[1];
@@ -210,22 +210,22 @@ function do_webseer() {
 	switch (get_nfilter_request_var('drp_action')) {
 		case WEBSEER_ACTION_SERVER_DELETE: // Delete
 			foreach ($hosts as $host) {
-				db_execute_prepared('DELETE FROM plugin_webseer_servers WHERE id = ?', array($host));
-				db_execute_prepared('DELETE FROM plugin_webseer_servers_log WHERE server= ?', array($host));
+				db_execute_prepared('DELETE FROM plugin_webseer_servers WHERE id = ?', [$host]);
+				db_execute_prepared('DELETE FROM plugin_webseer_servers_log WHERE server= ?', [$host]);
 				plugin_webseer_delete_remote_server($host);
 			}
 
 			break;
 		case WEBSEER_ACTION_SERVER_DISABLE: // Disabled
 			foreach ($hosts as $host) {
-				db_execute_prepared("UPDATE plugin_webseer_servers SET enabled = '' WHERE id = ?", array($host));
+				db_execute_prepared("UPDATE plugin_webseer_servers SET enabled = '' WHERE id = ?", [$host]);
 				plugin_webseer_enable_remote_server($host, false);
 			}
 
 			break;
 		case WEBSEER_ACTION_SERVER_ENABLE: // Enabled
 			foreach ($hosts as $host) {
-				db_execute_prepared("UPDATE plugin_webseer_servers SET enabled = 'on' WHERE id = ?", array($host));
+				db_execute_prepared("UPDATE plugin_webseer_servers SET enabled = 'on' WHERE id = ?", [$host]);
 				plugin_webseer_enable_remote_server($host, true);
 			}
 
@@ -246,35 +246,35 @@ function webseer_request_validation() {
 
 	/* ================= input validation and session storage ================= */
 	$filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			),
-		'page' => array(
+			],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-			),
-		'refresh' => array(
+			],
+		'refresh' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '20',
-			),
+			],
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 			),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 			),
-		'state' => array(
+		'state' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			)
+			]
         );
 
 	validate_store_request_vars($filters, 'sess_webseer');
@@ -286,33 +286,33 @@ function webseer_log_request_validation() {
 
 	/* ================= input validation and session storage ================= */
 	$filters = array(
-		'id' => array(
+		'id' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '-1'
-		),
-		'rows' => array(
+		],
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
-		'page' => array(
+		],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-		),
+		],
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => '',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'lastcheck',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'DESC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 	);
 
@@ -667,7 +667,7 @@ function webseer_edit_server() {
 	get_filter_request_var('id');
 	/* ==================================================== */
 
-	$server = array();
+	$server = [];
 	if (!isempty_request_var('id')) {
 		$server = db_fetch_row_prepared('SELECT * FROM plugin_webseer_servers WHERE id = ?', array(get_request_var('id')), false);
 		$header_label = __('Query [edit: %s]', $server['ip'], 'webseer');
@@ -683,7 +683,7 @@ function webseer_edit_server() {
 	form_start('webseer_servers.php');
 	html_start_box($header_label, '100%', '', '3', 'center', '');
 	draw_edit_form(array(
-		'config' => array('form_name' => 'chk'),
+		'config' => ['form_name' => 'chk'],
 		'fields' => inject_form_variables($webseer_server_fields, $server)
 		)
 	);

@@ -126,24 +126,24 @@ function plugin_webseer_upgrade() {
 		db_execute_prepared('UPDATE plugin_config
 			SET version = ?
 			WHERE directory = "webseer"',
-			array($new));
+			[$new]);
 
 		db_execute_prepared("UPDATE plugin_config SET
 			version = ?, name = ?, author = ?, webpage = ?
 			WHERE directory = ?",
-			array(
+			[
 				$info['version'],
 				$info['longname'],
 				$info['author'],
 				$info['homepage'],
 				$info['name']
-			)
+			]
 		);
 
 		db_execute_prepared('UPDATE plugin_realms
 			SET file = ?
 			WHERE file LIKE "%webseer.php%"',
-			array('webseer.php,webseer_servers.php,webseer_proxies.php'));
+			['webseer.php,webseer_servers.php,webseer_proxies.php']);
 
 		api_plugin_register_hook('webseer', 'replicate_out', 'webseer_replicate_out', 'setup.php', '1');
 	}
@@ -323,7 +323,7 @@ function plugin_webseer_config_arrays() {
 
 	$menu[__('Management')]['plugins/webseer/webseer.php'] = __('Service Checks', 'webseer');
 
-	$files = array('index.php', 'plugins.php', 'webseer.php');
+	$files = ['index.php', 'plugins.php', 'webseer.php'];
 	if (in_array(get_current_page(), $files)) {
 		plugin_webseer_check_config();
 	}
@@ -403,12 +403,12 @@ function webseer_replicate_out($data) {
 
 	cacti_log('INFO: Replicating for the WebSeer Plugin', false, 'REPLICATE');
 
-	$tables = array(
+	$tables = [
 		'plugin_webseer_contacts',
 		'plugin_webseer_proxies',
 		'plugin_webseer_servers',
 		'plugin_webseer_urls'
-	);
+	];
 
 	if ($class == 'all') {
 		foreach($tables as $table) {

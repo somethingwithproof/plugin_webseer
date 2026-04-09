@@ -78,7 +78,7 @@ function proxy_form_actions() {
 
 	/* setup some variables */
 	$proxy_list  = '';
-	$proxy_array = array();
+	$proxy_array = [];
 
 	/* loop through each of the graphs selected on the previous page and get more info about them */
 	foreach ($_POST as $var => $val) {
@@ -87,7 +87,7 @@ function proxy_form_actions() {
 			input_validate_input_number($matches[1]);
 			/* ==================================================== */
 
-			$proxy_list .= '<li>' . db_fetch_cell_prepared('SELECT name FROM plugin_webseer_proxies WHERE id = ?', array($matches[1])) . '</li>';
+			$proxy_list .= '<li>' . db_fetch_cell_prepared('SELECT name FROM plugin_webseer_proxies WHERE id = ?', [$matches[1]]) . '</li>';
 			$proxy_array[] = $matches[1];
 		}
 	}
@@ -181,8 +181,8 @@ function proxy_edit() {
 
 	draw_edit_form(
 		array(
-			'config' => array('no_form_tag' => true),
-			'fields' => inject_form_variables($webseer_proxy_fields, (isset($proxy) ? $proxy : array()))
+			'config' => ['no_form_tag' => true],
+			'fields' => inject_form_variables($webseer_proxy_fields, (isset($proxy) ? $proxy : []))
 		)
 	);
 
@@ -204,29 +204,29 @@ function proxy_edit() {
 function request_validation() {
 	/* ================= input validation and session storage ================= */
 	$filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			),
-		'page' => array(
+			],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-			),
-		'refresh' => array(
+			],
+		'refresh' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '20',
-			),
+			],
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'name',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 			),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 			)
 	);
 

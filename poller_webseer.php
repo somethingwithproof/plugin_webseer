@@ -100,7 +100,7 @@ $t = time() - (86400 * 30);
 if ($poller_id == 1) {
 	db_execute_prepared('DELETE FROM plugin_webseer_urls_log
 		WHERE lastcheck < FROM_UNIXTIME(?)',
-		array($t));
+		[$t]);
 
 	db_execute_prepared('DELETE FROM plugin_webseer_processes
 		WHERE time < FROM_UNIXTIME(?)',
@@ -111,7 +111,7 @@ $urls = db_fetch_assoc_prepared('SELECT *
 	FROM plugin_webseer_urls
 	WHERE enabled = "on"
 	AND poller_id = ?',
-	array($poller_id));
+	[$poller_id]);
 
 $max = 12;
 
@@ -120,7 +120,7 @@ if (cacti_sizeof($urls)) {
 		$total = db_fetch_cell_prepared('SELECT COUNT(id)
 			FROM plugin_webseer_processes
 			WHERE poller_id = ?',
-			array($poller_id));
+			[$poller_id]);
 
 		if ($max - $total > 0) {
 			$url['debug_type'] = 'Url';
@@ -152,7 +152,7 @@ while(true) {
 	$running = db_fetch_cell_prepared('SELECT COUNT(*)
 		FROM plugin_webseer_processes
 		WHERE poller_id = ?',
-		array($poller_id));
+		[$poller_id]);
 
 	if ($running == 0) {
 		break;
@@ -192,15 +192,15 @@ function plugin_webseer_register_server() {
 	$found = db_fetch_cell_prepared('SELECT id
 		FROM plugin_webseer_servers
 		WHERE ip = ?',
-		array($ipaddress));
+		[$ipaddress]);
 
 	if (!$found) {
-		$found = array();
+		$found = [];
 		$found['debug_type'] = 'Server';
 
 		plugin_webseer_debug('Registering Server ' . $ipaddress, $found);
 
-		$save = array();
+		$save = [];
 		$save['enabled']   = 'on';
 		$save['isme']      = 1;
 		$save['lastcheck'] = $lastcheck;
@@ -242,7 +242,7 @@ function plugin_webseer_update_servers() {
 
 			$cc = new cURL(true, 'cookies.txt', $server['compression'], '', $server);;
 
-			$data = array();
+			$data = [];
 			$data['action'] = 'HEARTBEAT';
 			$results = $cc->post($server['url'], $data);
 		}

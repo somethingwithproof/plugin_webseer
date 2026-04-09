@@ -97,7 +97,7 @@ $url = db_fetch_row_prepared('SELECT *
 	FROM plugin_webseer_urls
 	WHERE enabled = "on"
 	AND id = ?',
-	array($url_id));
+	[$url_id]);
 
 if (!cacti_sizeof($url)) {
 	print "ERROR: URL is not Found\n";
@@ -134,7 +134,7 @@ if ($url['url'] != '') {
 					$proxy = db_fetch_row_prepared('SELECT *
 						FROM plugin_webseer_proxies
 						WHERE id = ?',
-						array($url['proxy_server']));
+						[$url['proxy_server']]);
 
 					if (cacti_sizeof($proxy)) {
 						$cc->proxy_hostname = $proxy['hostname'];
@@ -182,7 +182,7 @@ if ($url['url'] != '') {
 		FROM plugin_webseer_servers
 		WHERE isme = 1
 		OR (isme = 0 AND UNIX_TIMESTAMP(lastcheck) > ?)',
-		array($lc));
+		[$lc]);
 
 	$tf = ($ts * ($url['downtrigger'] - 1)) + 1;
 
@@ -190,7 +190,7 @@ if ($url['url'] != '') {
 		FROM plugin_webseer_servers_log
 		WHERE UNIX_TIMESTAMP(lastcheck) > ?
 		AND url_id = ?',
-		array($t, $url['id']));
+		[$t, $url['id']]);
 
 	plugin_webseer_debug('pi:' . $pi . ', t:' . $t . ' (' . date('Y-m-d H:i:s', $t) . '), lc:' . $lc . ' (' . date('Y-m-d H:i:s', $lc) . '), ts:' . $ts . ', tf:' . $tf, $url);
 
@@ -265,7 +265,7 @@ if ($url['url'] != '') {
 	);
 
 	if ($results['result'] == 0) {
-		$save = array();
+		$save = [];
 		$save['url_id']          = $url['id'];
 		$save['server']          = plugin_webseer_whoami();
 		$save['lastcheck']       = date('Y-m-d H:i:s', $results['time']);
@@ -357,7 +357,7 @@ function plugin_webseer_get_users($results, $url, $type) {
 		$emails = db_fetch_cell_prepared('SELECT emails
 			FROM plugin_notification_lists
 			WHERE id = ?',
-			array($url['notify_list']));
+			[$url['notify_list']]);
 
 		if ($emails != '') {
 			$to .= ($to != '' ? ', ':'') . $emails;
@@ -432,7 +432,7 @@ function plugin_webseer_amimaster() {
 		FROM plugin_webseer_servers
 		WHERE ip = ?
 		AND master = 1',
-		array($ipaddress));
+		[$ipaddress]);
 
 	if ($server) {
 		return true;
@@ -452,7 +452,7 @@ function plugin_webseer_whoami() {
 	$server    = db_fetch_cell_prepared('SELECT id
 		FROM plugin_webseer_servers
 		WHERE ip = ?',
-		array($ipaddress));
+		[$ipaddress]);
 
 	if ($server) {
 		return $server;

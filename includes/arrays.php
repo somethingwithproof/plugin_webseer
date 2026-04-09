@@ -76,7 +76,7 @@ $httperrors = array(
 	505 => 'HTTP Version Not Supported',
 );
 
-$httpcompressions = array(
+$httpcompressions = [
 	0  => '',
 	1  => 'aes128gcm',
 	2  => 'br',
@@ -89,7 +89,7 @@ $httpcompressions = array(
 	9  => 'x-compress',
 	10 => 'x-gzip',
 	11 => 'zstd',
-);
+];
 
 $webseer_minutes = array(
 	1  => __('%d Minute', 1, 'webseer'),
@@ -115,10 +115,10 @@ $webseer_seconds = array(
 	10 => __('%d Seconds', 10, 'webseer'),
 );
 
-$webseer_notify_formats = array(
+$webseer_notify_formats = [
 	WEBSEER_FORMAT_HTML  => 'html',
 	WEBSEER_FORMAT_PLAIN => 'plain',
-);
+];
 
 if (db_table_exists('plugin_webseer_contacts')) {
 	$webseer_contact_users = db_fetch_assoc("SELECT pwc.id, pwc.data, pwc.type, ua.full_name
@@ -127,10 +127,10 @@ if (db_table_exists('plugin_webseer_contacts')) {
 		ON ua.id=pwc.user_id
 		WHERE pwc.data != ''");
 } else {
-	$webseer_contact_users = array();
+	$webseer_contact_users = [];
 }
 
-$webseer_notify_accounts = array();
+$webseer_notify_accounts = [];
 if (!empty($webseer_contact_users)) {
 	foreach ($webseer_contact_users as $webseer_contact_user) {
 		$webseer_notify_accounts[$webseer_contact_user['id']] = $webseer_contact_user['full_name'] . ' - ' . ucfirst($webseer_contact_user['type']);
@@ -213,14 +213,14 @@ $webseer_proxy_fields = array(
 		'size' => '40',
 		'default' => ''
 	),
-	'id' => array(
+	'id' => [
 		'method' => 'hidden_zero',
 		'value' => '|arg1:id|'
-	),
-	'save_component_proxy' => array(
+	],
+	'save_component_proxy' => [
 		'method' => 'hidden',
 		'value' => '1'
-	)
+	]
 );
 
 $webseer_server_fields = array(
@@ -277,10 +277,10 @@ $webseer_server_fields = array(
 		'value' => '|arg1:location|',
 		'max_length' => '256',
 	),
-	'id' => array(
+	'id' => [
 		'method' => 'hidden_zero',
 		'value' => '|arg1:id|'
-	),
+	],
 );
 
 $webseer_url_fields = array(
@@ -435,8 +435,8 @@ $webseer_url_fields = array(
 		'description' => __('You may specify here extra Emails to receive alerts for this URL (comma separated)', 'webseer'),
 		'value' => '|arg1:notify_extra|',
 	),
-	'id' => array(
+	'id' => [
 		'method' => 'hidden_zero',
 		'value' => '|arg1:id|'
-	),
+	],
 );

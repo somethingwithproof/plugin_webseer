@@ -42,7 +42,7 @@ if (isset($_SERVER['X-Forwarded-For'])) {
 
 $servers = db_fetch_assoc('SELECT * FROM plugin_webseer_servers');
 
-$s = array();
+$s = [];
 
 foreach ($servers as $server) {
 	if ($server['ip'] == $remoteip) {
@@ -116,12 +116,12 @@ foreach ($servers as $server) {
 							(id, enabled, requiresauth, proxy_server, checkcert, ip, display_name, notify_list, notify_accounts,
 							url, search, search_maint, search_failed, notify_extra, downtrigger)
 							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-							array(
+							[
 								$save['id'], $save['enabled'], $save['requiresauth'], $save['proxy_server'],
 								$save['checkcert'], $save['ip'], $save['display_name'], $save['notify_list'],
 								$save['notify_accounts'], $save['url'], $save['search'], $save['search_maint'],
 								$save['search_failed'], $save['notify_extra'], $save['downtrigger']
-							)
+							]
 						);
 					}
 				}
@@ -155,10 +155,10 @@ foreach ($servers as $server) {
 						db_execute_prepared('REPLACE INTO plugin_webseer_servers
 							(id, enabled, master, name, url, ip, location)
 							VALUES (?,?,?,?,?,?,?)',
-							array(
+							[
 								$save['id'], $save['enabled'], $save['master'],
 								$save['name'], $save['url'], $save['ip'], $save['location']
-							)
+							]
 						);
 					}
 				}
@@ -167,17 +167,17 @@ foreach ($servers as $server) {
 			case 'DELETEURL':
 				if (isset($_POST['id'])) {
 					$id = intval(get_filter_request_var('id'));
-					db_execute_prepared('DELETE FROM plugin_webseer_urls WHERE id = ?', array($id));
-					db_execute_prepared('DELETE FROM plugin_webseer_urls_log WHERE url_id = ?', array($id));
+					db_execute_prepared('DELETE FROM plugin_webseer_urls WHERE id = ?', [$id]);
+					db_execute_prepared('DELETE FROM plugin_webseer_urls_log WHERE url_id = ?', [$id]);
 				}
 				break;
 			case 'SETMASTER':
 				if (isset($_POST['ip'])) {
-					$ip = str_replace(array("'", '\\'), '', $_POST['ip']);
+					$ip = str_replace(["'", '\\'], '', $_POST['ip']);
 					$row = db_fetch_row("SELECT * FROM plugin_webseer_servers WHERE ip = '$ip'");
 					if (isset($row['id'])) {
 						db_execute('UPDATE plugin_webseer_servers set master = 0');
-						db_execute_prepared('UPDATE plugin_webseer_servers set master = 1 WHERE ip = ?', array($ip));
+						db_execute_prepared('UPDATE plugin_webseer_servers set master = 1 WHERE ip = ?', [$ip]);
 					}
 				}
 				break;

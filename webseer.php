@@ -45,7 +45,7 @@ case 'enable':
 	$id = get_filter_request_var('id');
 
 	if ($id > 0) {
-		db_execute_prepared('UPDATE plugin_webseer_urls SET enabled = "on" WHERE id = ?', array($id));
+		db_execute_prepared('UPDATE plugin_webseer_urls SET enabled = "on" WHERE id = ?', [$id]);
 		plugin_webseer_enable_remote_hosts($id, true);
 	}
 
@@ -57,7 +57,7 @@ case 'disable':
 	$id = get_filter_request_var('id');
 
 	if ($id > 0) {
-		db_execute_prepared('UPDATE plugin_webseer_urls SET enabled = "" WHERE id = ?', array($id));
+		db_execute_prepared('UPDATE plugin_webseer_urls SET enabled = "" WHERE id = ?', [$id]);
 		plugin_webseer_enable_remote_hosts($id, false);
 	}
 
@@ -112,18 +112,18 @@ function form_actions() {
 			if (cacti_sizeof($urls)) {
 				if ($action == WEBSEER_ACTION_URL_DELETE) { // delete
 					foreach ($urls as $id) {
-						db_execute_prepared('DELETE FROM plugin_webseer_urls WHERE id = ?', array($id));
-						db_execute_prepared('DELETE FROM plugin_webseer_urls_log WHERE url_id = ?', array($id));
+						db_execute_prepared('DELETE FROM plugin_webseer_urls WHERE id = ?', [$id]);
+						db_execute_prepared('DELETE FROM plugin_webseer_urls_log WHERE url_id = ?', [$id]);
 						plugin_webseer_delete_remote_hosts($id);
 					}
 				} elseif ($action == WEBSEER_ACTION_URL_DISABLE) { // disable
 					foreach ($urls as $id) {
-						db_execute_prepared('UPDATE plugin_webseer_urls SET enabled = "" WHERE id = ?', array($id));
+						db_execute_prepared('UPDATE plugin_webseer_urls SET enabled = "" WHERE id = ?', [$id]);
 						plugin_webseer_enable_remote_hosts($id, false);
 					}
 				} elseif ($action == WEBSEER_ACTION_URL_ENABLE) { // enable
 					foreach ($urls as $id) {
-						db_execute_prepared('UPDATE plugin_webseer_urls SET enabled = "on" WHERE id = ?', array($id));
+						db_execute_prepared('UPDATE plugin_webseer_urls SET enabled = "on" WHERE id = ?', [$id]);
 						plugin_webseer_enable_remote_hosts($id, true);
 					}
 				} elseif ($action == WEBSEER_ACTION_URL_DUPLICATE) { // duplicate
@@ -131,7 +131,7 @@ function form_actions() {
 						$newid = 1;
 
 						foreach ($urls as $id) {
-							$save = db_fetch_row_prepared('SELECT * FROM plugin_webseer_urls WHERE id = ?', array($id));
+							$save = db_fetch_row_prepared('SELECT * FROM plugin_webseer_urls WHERE id = ?', [$id]);
 							$save['id']              = 0;
 							$save['poller_id']       = 1;
 							$save['display_name']    = 'New Service Check (' . $newid . ')';
@@ -167,7 +167,7 @@ function form_actions() {
 
 	/* setup some variables */
 	$url_list  = '';
-	$url_array = array();
+	$url_array = [];
 
 	/* loop through each of the graphs selected on the previous page and get more info about them */
 	foreach ($_POST as $var => $val) {
@@ -176,7 +176,7 @@ function form_actions() {
 			input_validate_input_number($matches[1]);
 			/* ==================================================== */
 
-			$url_list .= '<li>' . db_fetch_cell_prepared('SELECT display_name FROM plugin_webseer_urls WHERE id = ?', array($matches[1])) . '</li>';
+			$url_list .= '<li>' . db_fetch_cell_prepared('SELECT display_name FROM plugin_webseer_urls WHERE id = ?', [$matches[1]]) . '</li>';
 			$url_array[] = $matches[1];
 		}
 	}
@@ -340,9 +340,9 @@ function purge_log_events($id) {
 	$name = db_fetch_cell_prepared('SELECT display_name
 		FROM plugin_webseer_urls
 		WHERE id = ?',
-		array($id));
+		[$id]);
 
-	db_execute_prepared('DELETE FROM plugin_webseer_urls_log WHERE url_id = ?', array($id));
+	db_execute_prepared('DELETE FROM plugin_webseer_urls_log WHERE url_id = ?', [$id]);
 
 	raise_message('url_log_purged', __('The Service Check history was purged for %s', $name, 'webseer'), MESSAGE_LEVEL_INFO);
 }
@@ -354,7 +354,7 @@ function webseer_edit_url() {
 	get_filter_request_var('id');
 	/* ==================================================== */
 
-	$url = array();
+	$url = [];
 	if (!isempty_request_var('id')) {
 		$url = db_fetch_row_prepared('SELECT * FROM plugin_webseer_urls WHERE id = ?', array(get_request_var('id')), false);
 		$header_label = __('Query [edit: %s]', $url['url'], 'webseer');
@@ -373,7 +373,7 @@ function webseer_edit_url() {
 
 	draw_edit_form(
 		array(
-			'config' => array('form_name' => 'chk'),
+			'config' => ['form_name' => 'chk'],
 			'fields' => inject_form_variables($webseer_url_fields, $url)
 		)
 	);
@@ -457,15 +457,15 @@ function webseer_edit_url() {
 function webseer_request_validation() {
 	/* ================= input validation and session storage ================= */
 	$filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			),
-		'page' => array(
+			],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-			),
+			],
 		'refresh' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
@@ -475,23 +475,23 @@ function webseer_request_validation() {
 			'filter' => FILTER_VALIDATE_IS_REGEX,
 			'default' => '',
 			'pageset' => true,
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 			),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'display_name',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 			),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 			),
-		'state' => array(
+		'state' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-			)
+			]
         );
 
 	validate_store_request_vars($filters, 'sess_webseerurl');
@@ -503,33 +503,33 @@ function webseer_log_request_validation() {
 
 	/* ================= input validation and session storage ================= */
 	$filters = array(
-		'id' => array(
+		'id' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '-1'
-		),
-		'rows' => array(
+		],
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
-		'page' => array(
+		],
+		'page' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => '1'
-		),
+		],
 		'filter' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => '',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'lastcheck',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'DESC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 	);
 
@@ -677,16 +677,16 @@ function list_urls() {
 
 	/* ================= input validation and session storage ================= */
 	$filters = array(
-		'rows' => array(
+		'rows' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
-		'state' => array(
+		],
+		'state' => [
 			'filter' => FILTER_VALIDATE_INT,
 			'pageset' => true,
 			'default' => '-1'
-		),
+		],
 		'refresh' => array(
 			'filter' => FILTER_VALIDATE_INT,
 			'default' => read_config_option('log_refresh_interval')
@@ -694,12 +694,12 @@ function list_urls() {
 		'sort_column' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'display_name',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		),
 		'sort_direction' => array(
 			'filter' => FILTER_CALLBACK,
 			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
+			'options' => ['options' => 'sanitize_search_string']
 		)
 	);
 
@@ -1016,7 +1016,7 @@ function webseer_filter() {
 						<select id='state'>
 							<option value='-1'><?php print __('Any', 'webseer');?></option>
 							<?php
-							foreach (array('2' => 'Disabled', '1' => 'Enabled', '3' => 'Triggered') as $key => $row) {
+							foreach (['2' => 'Disabled', '1' => 'Enabled', '3' => 'Triggered'] as $key => $row) {
 								print "<option value='" . $key . "'" . (isset_request_var('state') && $key == get_request_var('state') ? ' selected' : '') . '>' . $row . '</option>';
 							}
 							?>
