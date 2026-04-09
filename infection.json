@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/infection/infection/master/resources/schema.json",
+    "source": {
+        "directories": ["src"]
+    },
+    "mutators": {
+        "@default": true
+    },
+    "minMsi": 60,
+    "minCoveredMsi": 80,
+    "testFramework": "pest",
+    "testFrameworkOptions": "--group=unit"
+}
