@@ -72,7 +72,7 @@ function plugin_webseer_refresh_servers() {
 	foreach ($results as $r) {
 		if (substr($r, 0, 8) == 'SERVERS=') {
 			$servers = substr($r, 8);
-			$servers = unserialize(base64_decode($servers));
+			$servers = unserialize(base64_decode($servers), ['allowed_classes' => false]);
 			if (isset($servers[0]['id'])) {
 				db_execute('TRUNCATE TABLE plugin_webseer_servers');
 				foreach ($servers as $save) {
@@ -104,7 +104,7 @@ function plugin_webseer_refresh_urls () {
 	foreach ($results as $r) {
 		if (substr($r, 0, 5) == 'URLS=') {
 			$urls = substr($r, 5);
-			$urls = unserialize(base64_decode($urls));
+			$urls = unserialize(base64_decode($urls), ['allowed_classes' => false]);
 
 			if (isset($urls[0]['id'])) {
 				db_execute('TRUNCATE TABLE plugin_webseer_urls');
@@ -316,12 +316,18 @@ function plugin_webseer_update_contacts() {
 	$users = db_fetch_assoc("SELECT id, 'email' AS type, email_address FROM user_auth WHERE email_address!=''");
 	if (cacti_sizeof($users)) {
 		foreach($users as $u) {
-			$cid = db_fetch_cell('SELECT id FROM plugin_webseer_contacts WHERE type="email" AND user_id=' . $u['id']);
+			$cid = db_fetch_cell_prepared('SELECT id FROM plugin_webseer_contacts WHERE type="email" AND user_id=?', [$u['id']]);
 
 			if ($cid) {
-				db_execute("REPLACE INTO plugin_webseer_contacts (id, user_id, type, data) VALUES ($cid, " . $u['id'] . ", 'email', '" . $u['email_address'] . "')");
+				db_execute_prepared(
+					'REPLACE INTO plugin_webseer_contacts (id, user_id, type, data) VALUES (?, ?, \'email\', ?)',
+					[$cid, $u['id'], $u['email_address']]
+				);
 			} else {
-				db_execute("REPLACE INTO plugin_webseer_contacts (user_id, type, data) VALUES (" . $u['id'] . ", 'email', '" . $u['email_address'] . "')");
+				db_execute_prepared(
+					'REPLACE INTO plugin_webseer_contacts (user_id, type, data) VALUES (?, \'email\', ?)',
+					[$u['id'], $u['email_address']]
+				);
 			}
 		}
 	}

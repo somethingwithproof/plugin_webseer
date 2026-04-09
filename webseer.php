@@ -741,12 +741,13 @@ function list_urls() {
 	$sql_limit = ' LIMIT ' . ($rows*(get_request_var('page')-1)) . ',' . $rows;
 
 	if (get_request_var('rfilter') != '') {
-		$sql_where .= ($sql_where == '' ? 'WHERE ' : ' AND ') .
-			'display_name RLIKE \'' . get_request_var('rfilter') . '\' OR ' .
-			'url RLIKE \'' . get_request_var('rfilter') . '\' OR ' .
-			'search RLIKE \'' . get_request_var('rfilter') . '\' OR ' .
-			'search_maint RLIKE \'' . get_request_var('rfilter') . '\' OR ' .
-			'search_failed RLIKE \'' . get_request_var('rfilter') . '\'';
+		$rfilter     = db_qstr(get_request_var('rfilter'));
+		$sql_where  .= ($sql_where == '' ? 'WHERE ' : ' AND ') .
+			'display_name RLIKE ' . $rfilter . ' OR ' .
+			'url RLIKE ' . $rfilter . ' OR ' .
+			'search RLIKE ' . $rfilter . ' OR ' .
+			'search_maint RLIKE ' . $rfilter . ' OR ' .
+			'search_failed RLIKE ' . $rfilter;
 	}
 
 	$result = db_fetch_assoc("SELECT *
