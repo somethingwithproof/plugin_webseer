@@ -588,7 +588,7 @@ function list_servers() {
 			title = $(this).attr('title');
 
 			if (title != undefined && title.indexOf('/') >= 0) {
-				$(this).click(function() {
+				$(this).on('click', function() {
 					window.open(title, 'webseer');
 				});
 			}
@@ -710,15 +710,15 @@ function webseer_filter() {
 	}
 
 	$(function() {
-		$('#refresh, #state, #rows').change(function() {
+		$('#refresh, #state, #rows').on('change', function() {
 			applyFilter();
 		});
 
-		$('#clear').click(function() {
+		$('#clear').on('click', function() {
 			clearFilter();
 		});
 
-		$('#webseer').submit(function(event) {
+		$('#webseer').on('submit', function(event) {
 			event.preventDefault();
 			applyFilter();
 		});
@@ -811,15 +811,15 @@ function webseer_log_filter() {
 	}
 
 	$(function() {
-		$('#rows').change(function() {
+		$('#rows').on('change', function() {
 			applyFilter();
 		});
 
-		$('#clear').click(function() {
+		$('#clear').on('click', function() {
 			clearFilter();
 		});
 
-		$('#webseer').submit(function(event) {
+		$('#webseer').on('submit', function(event) {
 			event.preventDefault();
 			applyFilter();
 		});

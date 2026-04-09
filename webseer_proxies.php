@@ -384,15 +384,15 @@ function webseer_filter() {
 		}
 
 		$(function() {
-			$('#rows').change(function() {
+			$('#rows').on('change', function() {
 				applyFilter();
 			});
 
-			$('#clear').click(function() {
+			$('#clear').on('click', function() {
 				clearFilter();
 			});
 
-			$('#webseer').submit(function(event) {
+			$('#webseer').on('submit', function(event) {
 				event.preventDefault();
 				applyFilter();
 			});
