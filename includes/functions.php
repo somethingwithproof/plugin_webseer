@@ -90,7 +90,7 @@ function plugin_webseer_refresh_servers() {
 				break;
 			}
 			if (isset($servers[0]['id'])) {
-				db_execute_prepared('TRUNCATE TABLE plugin_webseer_servers');
+				db_execute('TRUNCATE TABLE plugin_webseer_servers');
 				foreach ($servers as $save) {
 					db_execute_prepared('REPLACE INTO plugin_webseer_servers (id, enabled, master, name, url, ip, location)
 						VALUES (?,?,?,?,?,?,?)',
@@ -140,7 +140,7 @@ function plugin_webseer_refresh_urls () {
 			}
 
 			if (isset($urls[0]['id'])) {
-				db_execute_prepared('TRUNCATE TABLE plugin_webseer_urls');
+				db_execute('TRUNCATE TABLE plugin_webseer_urls');
 
 				foreach ($urls as $save) {
 					db_execute_prepared('REPLACE INTO plugin_webseer_urls
