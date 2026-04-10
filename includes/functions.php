@@ -67,14 +67,30 @@ function plugin_webseer_refresh_servers() {
 	$data['action']  = 'GETSERVERS';
 	$results         = $cc->post($server['url'], $data);
 
+	if (!is_string($results)) {
+		return;
+	}
+
 	$results         = explode("\n", $results);
 
 	foreach ($results as $r) {
+		if (!is_string($r)) {
+			continue;
+		}
 		if (substr($r, 0, 8) == 'SERVERS=') {
-			$servers = substr($r, 8);
-			$servers = unserialize(base64_decode($servers), array('allowed_classes' => false));
+			$encoded = substr($r, 8);
+			$decoded = base64_decode($encoded, true);
+			if ($decoded === false) {
+				cacti_log('WARNING: plugin_webseer_refresh_servers failed to base64_decode response', false, 'WEBSEER');
+				break;
+			}
+			$servers = @unserialize($decoded, array('allowed_classes' => false));
+			if (!is_array($servers)) {
+				cacti_log('WARNING: plugin_webseer_refresh_servers failed to unserialize response', false, 'WEBSEER');
+				break;
+			}
 			if (isset($servers[0]['id'])) {
-				db_execute('TRUNCATE TABLE plugin_webseer_servers');
+				db_execute_prepared('TRUNCATE TABLE plugin_webseer_servers');
 				foreach ($servers as $save) {
 					db_execute_prepared('REPLACE INTO plugin_webseer_servers (id, enabled, master, name, url, ip, location)
 						VALUES (?,?,?,?,?,?,?)',
@@ -99,15 +115,32 @@ function plugin_webseer_refresh_urls () {
 	$data           = array();
 	$data['action'] = 'GETURLS';
 	$results        = $cc->post($server['url'], $data);
+
+	if (!is_string($results)) {
+		return;
+	}
+
 	$results        = explode("\n", $results);
 
 	foreach ($results as $r) {
+		if (!is_string($r)) {
+			continue;
+		}
 		if (substr($r, 0, 5) == 'URLS=') {
-			$urls = substr($r, 5);
-			$urls = unserialize(base64_decode($urls), array('allowed_classes' => false));
+			$encoded = substr($r, 5);
+			$decoded = base64_decode($encoded, true);
+			if ($decoded === false) {
+				cacti_log('WARNING: plugin_webseer_refresh_urls failed to base64_decode response', false, 'WEBSEER');
+				break;
+			}
+			$urls = @unserialize($decoded, array('allowed_classes' => false));
+			if (!is_array($urls)) {
+				cacti_log('WARNING: plugin_webseer_refresh_urls failed to unserialize response', false, 'WEBSEER');
+				break;
+			}
 
 			if (isset($urls[0]['id'])) {
-				db_execute('TRUNCATE TABLE plugin_webseer_urls');
+				db_execute_prepared('TRUNCATE TABLE plugin_webseer_urls');
 
 				foreach ($urls as $save) {
 					db_execute_prepared('REPLACE INTO plugin_webseer_urls
