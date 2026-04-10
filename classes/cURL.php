@@ -116,7 +116,7 @@ class cURL {
 		}
 
 		$this->debug('cURL options: ' . clean_up_lines(var_export($options, true)));
-		curl_setopt_[$process, $options];
+		curl_setopt_array($process, $options);
 
 		$return = curl_exec($process);
 		curl_close($process);
@@ -204,7 +204,7 @@ class cURL {
 		$options += $cert_opts;
 
 		$this->debug('cURL options: ' . clean_up_lines(var_export($options, true)));
-		curl_setopt_[$process,$options];
+		curl_setopt_array($process, $options);
 
 		$data = curl_exec($process);
 
