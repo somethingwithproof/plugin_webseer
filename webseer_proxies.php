@@ -85,7 +85,7 @@ function proxy_form_actions() {
 			input_validate_input_number($matches[1]);
 			/* ==================================================== */
 
-			$proxy_list .= '<li>' . db_fetch_cell_prepared('SELECT name FROM plugin_webseer_proxies WHERE id = ?', array($matches[1])) . '</li>';
+			$proxy_list .= '<li>' . html_escape(db_fetch_cell_prepared('SELECT name FROM plugin_webseer_proxies WHERE id = ?', array($matches[1]))) . '</li>';
 			$proxy_array[] = $matches[1];
 		}
 	}
@@ -117,7 +117,7 @@ function proxy_form_actions() {
 		<td class='saveRow'>
 			<input type='hidden' name='action' value='actions'>
 			<input type='hidden' name='selected_items' value='" . (isset($proxy_array) ? serialize($proxy_array) : '') . "'>
-			<input type='hidden' name='drp_action' value='" . get_nfilter_request_var('drp_action') . "'>
+			<input type='hidden' name='drp_action' value='" . html_escape(get_nfilter_request_var('drp_action')) . "'>
 			$save_html
 		</td>
 	</tr>\n";
@@ -252,7 +252,7 @@ function proxies() {
 	$sql_where = '';
 
 	if (get_request_var('filter') != '') {
-		$sql_where .= ($sql_where == '' ? 'WHERE ' : ' AND ') . ' name LIKE "%' . get_request_var('filter') . '%" OR hostname LIKE "%' . get_request_var('filter') . '%"';
+		$sql_where .= ($sql_where == '' ? 'WHERE ' : ' AND ') . '(name LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ' OR hostname LIKE ' . db_qstr('%' . get_request_var('filter') . '%') . ')';
 	}
 
 	$sql_order = get_order_string();
@@ -404,4 +404,3 @@ function webseer_filter() {
 	<?php
 	html_end_box();
 }
-

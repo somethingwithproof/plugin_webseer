@@ -172,7 +172,7 @@ foreach ($servers as $server) {
 			case 'SETMASTER':
 				if (isset($_POST['ip'])) {
 					$ip = str_replace(array("'", '\\'), '', $_POST['ip']);
-					$row = db_fetch_row("SELECT * FROM plugin_webseer_servers WHERE ip = '$ip'");
+					$row = db_fetch_row_prepared('SELECT * FROM plugin_webseer_servers WHERE ip = ?', array($ip));
 					if (isset($row['id'])) {
 						db_execute('UPDATE plugin_webseer_servers set master = 0');
 						db_execute_prepared('UPDATE plugin_webseer_servers set master = 1 WHERE ip = ?', array($ip));
@@ -192,4 +192,3 @@ foreach ($servers as $server) {
 		}
 	}
 }
-
