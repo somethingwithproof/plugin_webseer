@@ -21,4 +21,5 @@
 
 *.swp
 .DS_Store
+.omc/
 locales/po/*.mo
