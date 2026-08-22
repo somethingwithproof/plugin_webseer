@@ -734,6 +734,7 @@ function list_urls() {
 	}
 
 	$sql_where = '';
+	$sql_params = [];
 
 	if ($statefilter != '') {
 		$sql_where .= ($sql_where != '' ? ' AND ' : 'WHERE ') . $statefilter;
@@ -743,24 +744,27 @@ function list_urls() {
 	$sql_limit = ' LIMIT ' . ($rows * (get_request_var('page') - 1)) . ',' . $rows;
 
 	if (get_request_var('rfilter') != '') {
-		$rfilter     = db_qstr(get_request_var('rfilter'));
+		$rfilter     = get_request_var('rfilter');
 		$sql_where .= ($sql_where == '' ? 'WHERE ' : ' AND ') .
-			'display_name RLIKE ' . $rfilter . ' OR ' .
-			'url RLIKE ' . $rfilter . ' OR ' .
-			'search RLIKE ' . $rfilter . ' OR ' .
-			'search_maint RLIKE ' . $rfilter . ' OR ' .
-			'search_failed RLIKE ' . $rfilter;
+			'(display_name RLIKE ? OR ' .
+			'url RLIKE ? OR ' .
+			'search RLIKE ? OR ' .
+			'search_maint RLIKE ? OR ' .
+			'search_failed RLIKE ?)';
+		$sql_params = array_fill(0, 5, $rfilter);
 	}
 
-	$result = db_fetch_assoc("SELECT *
+	$result = db_fetch_assoc_prepared("SELECT *
 		FROM plugin_webseer_urls
 		$sql_where
 		$sql_order
-		$sql_limit");
+		$sql_limit",
+		$sql_params);
 
-	$total_rows = db_fetch_cell("SELECT COUNT(id)
+	$total_rows = db_fetch_cell_prepared("SELECT COUNT(id)
 		FROM plugin_webseer_urls
-		$sql_where");
+		$sql_where",
+		$sql_params);
 
 	$display_text = [
 		'nosort' => [
