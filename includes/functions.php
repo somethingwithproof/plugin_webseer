@@ -27,6 +27,102 @@ include_once(__DIR__ . '/arrays.php');
 include_once(__DIR__ . '/../classes/cURL.php');
 include_once(__DIR__ . '/../classes/mxlookup.php');
 
+/**
+ * Validate and store the shared list-page request variables (rows, page,
+ * refresh, sort and the optional state and regex filters) under $session.
+ *
+ * The urls, servers and proxies list pages differ only in their session key,
+ * default sort column, default refresh interval and whether they expose the
+ * state and regex filters, so those are the only parameters.
+ */
+function webseer_validate_list_request($session, $sort_default, $refresh_default, $with_state = true, $with_rfilter = false) {
+	$filters = [
+		'rows' => [
+			'filter'  => FILTER_VALIDATE_INT,
+			'pageset' => true,
+			'default' => '-1'
+			],
+		'page' => [
+			'filter'  => FILTER_VALIDATE_INT,
+			'default' => '1'
+			],
+		'refresh' => [
+			'filter'  => FILTER_VALIDATE_INT,
+			'pageset' => true,
+			'default' => $refresh_default
+			],
+	];
+
+	if ($with_rfilter) {
+		$filters['rfilter'] = [
+			'filter'  => FILTER_VALIDATE_IS_REGEX,
+			'default' => '',
+			'pageset' => true,
+			'options' => ['options' => 'sanitize_search_string']
+			];
+	}
+
+	$filters['sort_column'] = [
+		'filter'  => FILTER_CALLBACK,
+		'default' => $sort_default,
+		'options' => ['options' => 'sanitize_search_string']
+		];
+
+	$filters['sort_direction'] = [
+		'filter'  => FILTER_CALLBACK,
+		'default' => 'ASC',
+		'options' => ['options' => 'sanitize_search_string']
+		];
+
+	if ($with_state) {
+		$filters['state'] = [
+			'filter'  => FILTER_VALIDATE_INT,
+			'pageset' => true,
+			'default' => '-1'
+			];
+	}
+
+	validate_store_request_vars($filters, $session);
+}
+
+/**
+ * Validate and store the shared history/log request variables under $session.
+ */
+function webseer_validate_log_request($session) {
+	$filters = [
+		'id' => [
+			'filter'  => FILTER_VALIDATE_INT,
+			'default' => '-1'
+		],
+		'rows' => [
+			'filter'  => FILTER_VALIDATE_INT,
+			'pageset' => true,
+			'default' => '-1'
+		],
+		'page' => [
+			'filter'  => FILTER_VALIDATE_INT,
+			'default' => '1'
+		],
+		'filter' => [
+			'filter'  => FILTER_CALLBACK,
+			'default' => '',
+			'options' => ['options' => 'sanitize_search_string']
+		],
+		'sort_column' => [
+			'filter'  => FILTER_CALLBACK,
+			'default' => 'lastcheck',
+			'options' => ['options' => 'sanitize_search_string']
+		],
+		'sort_direction' => [
+			'filter'  => FILTER_CALLBACK,
+			'default' => 'DESC',
+			'options' => ['options' => 'sanitize_search_string']
+		],
+	];
+
+	validate_store_request_vars($filters, $session);
+}
+
 function webseer_show_tab($current_tab) {
 	global $config;
 

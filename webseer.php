@@ -453,86 +453,11 @@ function webseer_edit_url() {
  *  like to create issues with Cacti.
 */
 function webseer_request_validation() {
-	/* ================= input validation and session storage ================= */
-	$filters = array(
-		'rows' => array(
-			'filter' => FILTER_VALIDATE_INT,
-			'pageset' => true,
-			'default' => '-1'
-			),
-		'page' => array(
-			'filter' => FILTER_VALIDATE_INT,
-			'default' => '1'
-			),
-		'refresh' => array(
-			'filter' => FILTER_VALIDATE_INT,
-			'pageset' => true,
-			'default' => read_config_option('log_refresh_interval')
-			),
-		'rfilter' => array(
-			'filter' => FILTER_VALIDATE_IS_REGEX,
-			'default' => '',
-			'pageset' => true,
-			'options' => array('options' => 'sanitize_search_string')
-			),
-		'sort_column' => array(
-			'filter' => FILTER_CALLBACK,
-			'default' => 'display_name',
-			'options' => array('options' => 'sanitize_search_string')
-			),
-		'sort_direction' => array(
-			'filter' => FILTER_CALLBACK,
-			'default' => 'ASC',
-			'options' => array('options' => 'sanitize_search_string')
-			),
-		'state' => array(
-			'filter' => FILTER_VALIDATE_INT,
-			'pageset' => true,
-			'default' => '-1'
-			)
-        );
-
-	validate_store_request_vars($filters, 'sess_webseerurl');
-	/* ================= input validation ================= */
+	webseer_validate_list_request('sess_webseerurl', 'display_name', read_config_option('log_refresh_interval'), true, true);
 }
 
 function webseer_log_request_validation() {
-	global $title, $rows_selector, $config, $reset_multi;
-
-	/* ================= input validation and session storage ================= */
-	$filters = array(
-		'id' => array(
-			'filter' => FILTER_VALIDATE_INT,
-			'default' => '-1'
-		),
-		'rows' => array(
-			'filter' => FILTER_VALIDATE_INT,
-			'pageset' => true,
-			'default' => '-1'
-		),
-		'page' => array(
-			'filter' => FILTER_VALIDATE_INT,
-			'default' => '1'
-		),
-		'filter' => array(
-			'filter' => FILTER_CALLBACK,
-			'default' => '',
-			'options' => array('options' => 'sanitize_search_string')
-		),
-		'sort_column' => array(
-			'filter' => FILTER_CALLBACK,
-			'default' => 'lastcheck',
-			'options' => array('options' => 'sanitize_search_string')
-		),
-		'sort_direction' => array(
-			'filter' => FILTER_CALLBACK,
-			'default' => 'DESC',
-			'options' => array('options' => 'sanitize_search_string')
-		),
-	);
-
-	validate_store_request_vars($filters, 'sess_webseer_log');
-	/* ================= input validation ================= */
+	webseer_validate_log_request('sess_webseer_log');
 }
 
 function webseer_show_history() {
