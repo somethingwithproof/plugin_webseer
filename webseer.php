@@ -649,7 +649,7 @@ function webseer_show_history() {
 			print "<tr class='tableRow selectable' style='$style' id='line" . $row['id'] . "'>";
 
 			form_selectable_cell($row['lastcheck'], $row['id']);
-			form_selectable_cell("<a class='linkEditMain' href='" . $row['url'] . "' target=_new>" . $row['url'] . '</a>', $row['id']);
+			form_selectable_cell("<a class='linkEditMain' href='" . html_escape($row['url']) . "' target=_new>" . html_escape($row['url']) . '</a>', $row['id']);
 			form_selectable_cell(($row['result'] == 1 ? __('Service Restored', 'webseer') : __('Service Down', 'webseer')), $row['id']);
 			form_selectable_cell($httperrors[$row['http_code']], $row['id'], '', 'right');
 			form_selectable_cell(round($row['namelookup_time'], 4), $row['id'], '', ($row['namelookup_time'] > 4 ? 'background-color: red;text-align:right' : ($row['namelookup_time'] > 1 ? 'background-color: yellow;text-align:right' : 'text-align:right')));
@@ -887,9 +887,9 @@ function list_urls() {
 			}
 
 			if (trim($url) == '') {
-				form_selectable_cell($row['display_name'], $row['id']);
+				form_selectable_cell(html_escape($row['display_name']), $row['id']);
 			} else {
-				form_selectable_cell($row['display_name'], $row['id'], '', '', html_escape($url));
+				form_selectable_cell(html_escape($row['display_name']), $row['id'], '', '', html_escape($url));
 			}
 
 			if ($row['lastcheck'] == '0000-00-00 00:00:00') {
@@ -900,7 +900,7 @@ function list_urls() {
 
 			form_selectable_cell(($row['enabled'] == 'on' ? __('Enabled', 'webseer') : __('Disabled', 'webseer')), $row['id'], '', 'right');
 			form_selectable_cell($httpcompressions[$row['compression']], $row['id'], '', 'right');
-			form_selectable_cell(!empty($row['http_code']) ? $httperrors[$row['http_code']] : __('Error', 'webseer'), $row['id'], '', $row['error'] != '' ? 'deviceDown right' : 'right', $row['error']);
+			form_selectable_cell(!empty($row['http_code']) ? $httperrors[$row['http_code']] : __('Error', 'webseer'), $row['id'], '', $row['error'] != '' ? 'deviceDown right' : 'right', html_escape($row['error']));
 			form_selectable_cell($row['requiresauth'] == '' ? __('Disabled', 'webseer') : __('Enabled', 'webseer'), $row['id'], '', 'right');
 
 			form_selectable_cell(round(webseer_checknull($row['namelookup_time']), 4), $row['id'], '', ($row['namelookup_time'] > 4 ? 'deviceDown right' : ($row['namelookup_time'] > 1 ? 'deviceRecovering right' : 'right')));
