@@ -107,6 +107,7 @@ class cURL {
 			CURLOPT_POSTFIELDS     => $data,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS,
 			CURLOPT_POST           => true,
 		];
 
@@ -141,6 +142,7 @@ class cURL {
 			CURLOPT_USERAGENT      => $this->user_agent,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS,
 			CURLOPT_MAXREDIRS      => 4,
 			CURLOPT_TIMEOUT        => $this->host['timeout_trigger'],
 			CURLOPT_FAILONERROR    => ($this->host['requiresauth'] == '' ? true : false),
@@ -177,7 +179,7 @@ class cURL {
 			$is_https = (substr(strtolower($url), 0, 5) == 'https');
 
 			$proxy_opts = [
-				CURLOPT_UNRESTRICTED_AUTH => true,
+				CURLOPT_UNRESTRICTED_AUTH => false,
 				CURLOPT_PROXY             => $this->proxy_hostname,
 				CURLOPT_PROXYPORT         => $is_https ? $port_https : $port_http,
 			];

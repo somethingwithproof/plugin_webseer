@@ -649,7 +649,7 @@ function webseer_show_history() {
 			print "<tr class='tableRow selectable' style='$style' id='line" . $row['id'] . "'>";
 
 			form_selectable_cell($row['lastcheck'], $row['id']);
-			form_selectable_cell("<a class='linkEditMain' href='" . html_escape($row['url']) . "' target=_new>" . html_escape($row['url']) . '</a>', $row['id']);
+			form_selectable_cell(preg_match('#^https?://#i', $row['url']) ? "<a class='linkEditMain' href='" . html_escape($row['url']) . "' target=_new>" . html_escape($row['url']) . '</a>' : html_escape($row['url']), $row['id']);
 			form_selectable_cell(($row['result'] == 1 ? __('Service Restored', 'webseer') : __('Service Down', 'webseer')), $row['id']);
 			form_selectable_cell($httperrors[$row['http_code']], $row['id'], '', 'right');
 			form_selectable_cell(round($row['namelookup_time'], 4), $row['id'], '', ($row['namelookup_time'] > 4 ? 'background-color: red;text-align:right' : ($row['namelookup_time'] > 1 ? 'background-color: yellow;text-align:right' : 'text-align:right')));
