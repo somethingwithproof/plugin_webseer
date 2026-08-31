@@ -100,15 +100,15 @@ class cURL {
 		$data = implode('&', $d);
 
 		$options = [
-			CURLOPT_HTTPHEADER     => $this->headers,
-			CURLOPT_HEADER         => true,
-			CURLOPT_USERAGENT      => $this->user_agent,
-			CURLOPT_TIMEOUT        => 4,
-			CURLOPT_POSTFIELDS     => $data,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTPHEADER      => $this->headers,
+			CURLOPT_HEADER          => true,
+			CURLOPT_USERAGENT       => $this->user_agent,
+			CURLOPT_TIMEOUT         => 4,
+			CURLOPT_POSTFIELDS      => $data,
+			CURLOPT_RETURNTRANSFER  => true,
+			CURLOPT_FOLLOWLOCATION  => true,
 			CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS,
-			CURLOPT_POST           => true,
+			CURLOPT_POST            => true,
 		];
 
 		if (!empty($this->compression)) {
@@ -138,14 +138,14 @@ class cURL {
 		$process = curl_init($url);
 
 		$options = [
-			CURLOPT_HEADER         => true,
-			CURLOPT_USERAGENT      => $this->user_agent,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HEADER          => true,
+			CURLOPT_USERAGENT       => $this->user_agent,
+			CURLOPT_RETURNTRANSFER  => true,
+			CURLOPT_FOLLOWLOCATION  => true,
 			CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS,
-			CURLOPT_MAXREDIRS      => 4,
-			CURLOPT_TIMEOUT        => $this->host['timeout_trigger'],
-			CURLOPT_FAILONERROR    => ($this->host['requiresauth'] == '' ? true : false),
+			CURLOPT_MAXREDIRS       => 4,
+			CURLOPT_TIMEOUT         => $this->host['timeout_trigger'],
+			CURLOPT_FAILONERROR     => ($this->host['requiresauth'] == '' ? true : false),
 		];
 
 		if (!empty($this->compression)) {

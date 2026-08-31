@@ -658,7 +658,7 @@ function list_urls() {
 		$rows = get_request_var('rows');
 	}
 
-	$sql_where = '';
+	$sql_where  = '';
 	$sql_params = [];
 
 	if ($statefilter != '') {

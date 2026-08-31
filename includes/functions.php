@@ -34,6 +34,11 @@ include_once(__DIR__ . '/../classes/mxlookup.php');
  * The urls, servers and proxies list pages differ only in their session key,
  * default sort column, default refresh interval and whether they expose the
  * state and regex filters, so those are the only parameters.
+ * @param mixed $session
+ * @param mixed $sort_default
+ * @param mixed $refresh_default
+ * @param mixed $with_state
+ * @param mixed $with_rfilter
  */
 function webseer_validate_list_request($session, $sort_default, $refresh_default, $with_state = true, $with_rfilter = false) {
 	$filters = [
@@ -87,6 +92,7 @@ function webseer_validate_list_request($session, $sort_default, $refresh_default
 
 /**
  * Validate and store the shared history/log request variables under $session.
+ * @param mixed $session
  */
 function webseer_validate_log_request($session) {
 	$filters = [
