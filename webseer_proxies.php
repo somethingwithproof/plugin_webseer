@@ -200,36 +200,7 @@ function proxy_edit() {
  *  like to create issues with Cacti.
  */
 function request_validation() {
-	// ================= input validation and session storage =================
-	$filters = [
-		'rows' => [
-			'filter'  => FILTER_VALIDATE_INT,
-			'pageset' => true,
-			'default' => '-1'
-			],
-		'page' => [
-			'filter'  => FILTER_VALIDATE_INT,
-			'default' => '1'
-			],
-		'refresh' => [
-			'filter'  => FILTER_VALIDATE_INT,
-			'pageset' => true,
-			'default' => '20',
-			],
-		'sort_column' => [
-			'filter'  => FILTER_CALLBACK,
-			'default' => 'name',
-			'options' => ['options' => 'sanitize_search_string']
-			],
-		'sort_direction' => [
-			'filter'  => FILTER_CALLBACK,
-			'default' => 'ASC',
-			'options' => ['options' => 'sanitize_search_string']
-			]
-	];
-
-	validate_store_request_vars($filters, 'sess_ws_proxy');
-	// ================= input validation =================
+	webseer_validate_list_request('sess_ws_proxy', 'name', '20', false, false);
 }
 
 function proxies() {

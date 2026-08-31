@@ -240,82 +240,11 @@ function do_webseer() {
  *  like to create issues with Cacti.
  */
 function webseer_request_validation() {
-	global $title, $rows_selector, $config, $reset_multi;
-
-	// ================= input validation and session storage =================
-	$filters = [
-		'rows' => [
-			'filter'  => FILTER_VALIDATE_INT,
-			'pageset' => true,
-			'default' => '-1'
-			],
-		'page' => [
-			'filter'  => FILTER_VALIDATE_INT,
-			'default' => '1'
-			],
-		'refresh' => [
-			'filter'  => FILTER_VALIDATE_INT,
-			'pageset' => true,
-			'default' => '20',
-			],
-		'sort_column' => [
-			'filter'  => FILTER_CALLBACK,
-			'default' => 'name',
-			'options' => ['options' => 'sanitize_search_string']
-			],
-		'sort_direction' => [
-			'filter'  => FILTER_CALLBACK,
-			'default' => 'ASC',
-			'options' => ['options' => 'sanitize_search_string']
-			],
-		'state' => [
-			'filter'  => FILTER_VALIDATE_INT,
-			'pageset' => true,
-			'default' => '-1'
-			]
-		];
-
-	validate_store_request_vars($filters, 'sess_webseer');
-	// ================= input validation =================
+	webseer_validate_list_request('sess_webseer', 'name', '20', true, false);
 }
 
 function webseer_log_request_validation() {
-	global $title, $rows_selector, $config, $reset_multi;
-
-	// ================= input validation and session storage =================
-	$filters = [
-		'id' => [
-			'filter'  => FILTER_VALIDATE_INT,
-			'default' => '-1'
-		],
-		'rows' => [
-			'filter'  => FILTER_VALIDATE_INT,
-			'pageset' => true,
-			'default' => '-1'
-		],
-		'page' => [
-			'filter'  => FILTER_VALIDATE_INT,
-			'default' => '1'
-		],
-		'filter' => [
-			'filter'  => FILTER_CALLBACK,
-			'default' => '',
-			'options' => ['options' => 'sanitize_search_string']
-		],
-		'sort_column' => [
-			'filter'  => FILTER_CALLBACK,
-			'default' => 'lastcheck',
-			'options' => ['options' => 'sanitize_search_string']
-		],
-		'sort_direction' => [
-			'filter'  => FILTER_CALLBACK,
-			'default' => 'DESC',
-			'options' => ['options' => 'sanitize_search_string']
-		],
-	];
-
-	validate_store_request_vars($filters, 'sess_weseer_server_log');
-	// ================= input validation =================
+	webseer_validate_log_request('sess_weseer_server_log');
 }
 
 function webseer_show_history() {
